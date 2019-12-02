@@ -2,7 +2,9 @@
 
 /**
  * Laravel - A PHP Framework For Web Artisans
- *
+ * 
+ * php artisan serve使用
+ * 
  * @package  Laravel
  * @author   Taylor Otwell <taylor@laravel.com>
  */

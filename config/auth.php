@@ -42,7 +42,9 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            // token验证改为passport授权
+            // 'driver' => 'token',
+            'driver' => 'passport',
             'provider' => 'users',
         ],
     ],

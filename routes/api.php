@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::any('/user/login', function(Request $request) {
+	exit(json_encode(['code'=>20000, 'data'=>'admin_token_api']));
+});
+Route::any('/', function(Request $request) {
+	exit(json_encode(['code'=>20000, 'data'=>'admin_token_api_index']));
 });
