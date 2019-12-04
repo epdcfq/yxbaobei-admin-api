@@ -31,7 +31,7 @@ class ServeController extends Controller
 
     public function checkSign()
     {
-    	$echoStr = $_GET["echostr"];
+    	$echoStr = isset($_GET["echostr"]) ? $_GET['echostr'] : '';
          if($this->checkSignature()){
              echo $echoStr;
              exit;
@@ -41,10 +41,10 @@ class ServeController extends Controller
     //检查签名
     private function checkSignature()
      {
-         $signature = $_GET["signature"];
-         $timestamp = $_GET["timestamp"];
-         $nonce = $_GET["nonce"];
-         $token = config('wechat.official_account')['token']; ;
+         $signature = isset($_GET["signature"]) ? $_GET['signature'] : '';
+         $timestamp = isset($_GET["timestamp"]) ? $_GET['timestamp'] : '';
+         $nonce = isset($_GET["nonce"]) ? $_GET['nonce'] : '';
+         $token = config('wechat.official_account.default')['token'];
          $tmpArr = array($token, $timestamp, $nonce);
          sort($tmpArr, SORT_STRING);
          $tmpStr = implode($tmpArr);
