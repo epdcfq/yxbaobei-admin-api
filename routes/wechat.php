@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
  */
 // 响应微信服务
 Route::any('/serve', 'ServeController@serve');
-Route::any('/sign/check', 'ServeController@checkSign');
+Route::any('/sign/valid', 'ServeController@valid');
 
 // 微信用户授权
 Route::group(['prefix'=>'user', 'middleware'=>'wechat.oauth'], function(){
