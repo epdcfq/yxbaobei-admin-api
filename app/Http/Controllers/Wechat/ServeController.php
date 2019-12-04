@@ -57,6 +57,6 @@ class ServeController extends Controller
                     break;
             }
         });
-        // return $app->server->serve();
+        return $app->server->serve();
     }
 }
