@@ -43,10 +43,15 @@ return [
 
         'api' => [
             // token验证改为passport授权
-            // 'driver' => 'token',
-            'driver' => 'passport',
+            'driver' => 'jwt',
+            // 'driver' => 'passport',
             'provider' => 'users',
         ],
+        // admin配置
+        // 'admin' => [
+        //     'driver' => 'session',    // 用户信息存储到session里
+        //     'provider' => 'admins',   // 添加admin provider
+        // ],
     ],
 
     /*
@@ -76,6 +81,7 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
     ],
 
     /*

@@ -53,6 +53,8 @@ $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
+    // 默认返回json
+    // $request = \App\Http\Requests\BaseRequest::capture()
 );
 
 $response->send();
