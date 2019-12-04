@@ -18,7 +18,11 @@ use Illuminate\Http\Request;
 // 响应微信服务
 Route::any('/serve', 'ServeController@serve');
 
-// Route::group(['prefix'=>'wechat', 'namespace'=>'Wechat'], function(){
-// 	Route::any('/serve', 'ServeController@serve');
-// 	// Route::group([])
-// });
+// 微信用户授权
+Route::group(['prefix'=>'user', 'middleware'=>'wechat.oauth'], function(){
+	Route::get('/info', function () {
+        $user = session('wechat.oauth_user'); // 拿到授权用户资料
+
+        dd($user);
+    });
+});

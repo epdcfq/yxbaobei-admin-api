@@ -68,5 +68,8 @@ class Kernel extends HttpKernel
         'refresh.jwt' => \Tymon\JWTAuth\Middleware\RefreshToken::class,
         # 跨域
         'cors' => \App\Http\Middleware\CORS::class,
+
+        # 微信授权中间件
+        'wechat.oauth' => \Overtrue\LaravelWeChat\Middleware\OAuthAuthenticate::class,
     ];
 }
