@@ -12,13 +12,6 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-/**
- * 微信授权登录laravel-wechat
- */
-Route::group(['prefix'=>'webchat', 'namespace'=>'Wechat'], function(){
-	Route::any('/serve', 'ServeController@serve');
-});
-
 
 /**
  * JWT登录验证

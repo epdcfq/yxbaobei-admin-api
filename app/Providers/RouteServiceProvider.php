@@ -39,7 +39,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        // 增加微信授权路由
+        $this->mapWechatRoutes();
     }
 
     /**
@@ -70,4 +71,21 @@ class RouteServiceProvider extends ServiceProvider
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
     }
+
+    /**
+     * Define the "wechat" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapWechatRoutes()
+    {
+        Route::prefix('wechat')
+             ->middleware('wechat')
+             ->namespace($this->namespace.'\\Wechat')
+             ->group(base_path('routes/wechat.php'));
+    }
+
+    
 }

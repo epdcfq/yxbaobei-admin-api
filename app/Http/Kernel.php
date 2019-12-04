@@ -41,6 +41,11 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+
+        // 微信中间件
+        'wechat' => [
+
+        ],
     ];
 
     /**
