@@ -32,6 +32,7 @@ class ServeController extends Controller
 
     public function valid()
     {
+    	Log::info('serve valid arrived.'); 
         $echoStr = $_GET["echostr"];
 
         //valid signature , option
