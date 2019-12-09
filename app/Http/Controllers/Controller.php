@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use JWTAuth;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -10,7 +11,13 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    
+    public function __construct()
+    {
+    	// $this->user = JWTAuth::parseToken()->authenticate();
+    	// if (!$this->user) {
+    	// 	return $this->fail(301, '登录失效');
+    	// }
+    }
 	protected function success($data = [])
 	{
 		// print_r(config('errorcode.code')[200]);die;

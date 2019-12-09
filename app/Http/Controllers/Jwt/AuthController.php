@@ -69,7 +69,7 @@ class AuthController extends Controller
 	}
 
 	// 登录用户信息
-	public function user(Request $request)
+	public function info(Request $request)
 	{
 	    $this->validate($request, [
             'token' => 'required'
@@ -83,6 +83,7 @@ class AuthController extends Controller
 
         // 获取角色
         $user['roles'] = ['admin'];
+        $user['menu_list'] = config('admmenus');
 
 
         return $this->success($user);
