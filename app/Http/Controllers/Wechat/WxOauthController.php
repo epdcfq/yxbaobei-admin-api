@@ -48,7 +48,7 @@ class WxOauthController extends Controller
 
 		$targetUrl = empty($_SESSION['referer']) ? '/' : $_SESSION['referer'];
 		echo 'header:'.$targetUrl.chr(10);
-		print_r($_SESSION['webchat_user']);
+		print_r($_SESSION['wechat_user']);
 		die;
 		// header('location:'. $targetUrl); // 跳转到 user/profile
     }
