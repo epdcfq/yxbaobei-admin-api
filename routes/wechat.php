@@ -28,10 +28,15 @@ Route::group(['prefix'=>'user', 'middleware'=>'wechat.oauth'], function(){
     });
 });
 
+Route::any('/auth', 'WxUserController@auth');
+
+// [Web端]JSSDK配置
+Route::any('/sdk/config', 'WxSdkController@config');
 // 微信授权
-Route::group(['prefix'=>'wxoauth'], function(){
-	Route::get('/scope', 'WxOauthController@Scope');
-	Route::get('/scope/callback', 'WxOauthController@ScopeCallback');
+Route::group(['prefix'=>'authorize'], function(){
+	# 发起授权跳转
+	Route::get('/{source?}/{source_id?}', 'WxOauthController@index');
+	Route::get('/callback/{source?}/{source_id?}', 'WxOauthController@callback');
 });
 
 // 测试

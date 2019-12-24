@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Adm\Sys;
 use JWTAuth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Sys\RoleList;
-use App\Http\Requests\Sys\RoleRequest;
+use App\Models\RoleList;
+use App\Http\Requests\RoleRequest;
 
 class RolesController extends Controller
 {
@@ -20,7 +20,12 @@ class RolesController extends Controller
     public function index(Request $request, RoleList $role)
     {
         $data = $role::where('status' ,'1')->get();
-        
+        // return response()->json([
+        //     'status' => false,
+        //     'code' => 401,
+        //     'message' => '登录',
+        //     'data' => $data,
+        // ]);
         return $this->success($data);
     }
 

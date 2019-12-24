@@ -18,13 +18,13 @@ class Controller extends BaseController
     	// 	return $this->fail(301, '登录失效');
     	// }
     }
-	protected function success($data = [])
+	protected function success($data = [], $msg='')
 	{
 		// print_r(config('errorcode.code')[200]);die;
 		return response()->json([
 			'status' => true,
 			'code' => 200,
-			'message' => config('errorcode.code')[200],
+			'message' => $msg ? $msg : config('errorcode.code')[200],
 			'data' => $data,
 		]);
 	}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Wechat;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\WxAuthorizeRepository;
 
 class WxUserController extends Controller
 {
@@ -23,5 +24,16 @@ class WxUserController extends Controller
         $app = app('wechat.official_account');
         $data = $app->user->get($open_id);
         return $this->success($data);
+    }
+
+    public function auth()
+    {
+        $obj = new \App\Models\Wx\WxAuthModel();
+        $auth = new WxAuthorizeRepository($obj);
+
+        $data = [];
+        $result = $auth->addAuth($data);
+        print_r($result);
+        echo 1;die;
     }
 }

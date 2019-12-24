@@ -13,3 +13,39 @@ EasyWeChat.DEBUG: Request received: {"method":"POST","uri":"http://118.190.38.24
 [2019-12-05 10:49:04] EasyWeChat.DEBUG: Server response created: {"content":"<xml><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[收到事件消息]]></Content><ToUserName><![CDATA[oxyQh1WpluVaxaG_STzgwlZhd18A]]></ToUserName><FromUserName><![CDATA[gh_857275425e4c]]></FromUserName><CreateTime>1575542944</CreateTime></xml>"} []
 [2019-12-05 10:49:06] EasyWeChat.DEBUG: Request received: {"method":"POST","uri":"http://118.190.38.248/wechat/serve?nonce=687218056&openid=oxyQh1WpluVaxaG_STzgwlZhd18A&signature=277999fdf99bd0abbb079c610f7cc3b29073b11f&timestamp=1575542946","content-type":"xml","content":"<xml><ToUserName><![CDATA[gh_857275425e4c]]></ToUserName>\n<FromUserName><![CDATA[oxyQh1WpluVaxaG_STzgwlZhd18A]]></FromUserName>\n<CreateTime>1575542945</CreateTime>\n<MsgType><![CDATA[image]]></MsgType>\n<PicUrl><![CDATA[http://mmbiz.qpic.cn/mmbiz_jpg/Aia1y9GYBGoIocJUj0jYg3LomNNbibPPX5G7fwR3OlAPISjwInSe5eS9M5YG1jXWQffYcQlOO16fZBt6I6w9JdXA/0]]></PicUrl>\n<MsgId>22556350162563207</MsgId>\n<MediaId><![CDATA[nSQTuVh0_TaZmqqF9vtolLxrVG4G8GgqZ_6ooDazfslJLJsIgl3GeV7tzXTlJYCx]]></MediaId>\n</xml>"} []
 [2019-12-05 10:49:06] EasyWeChat.DEBUG: Server response created: {"content":"<xml><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[收到图片消息]]></Content><ToUserName><![CDATA[oxyQh1WpluVaxaG_STzgwlZhd18A]]></ToUserName><FromUserName><![CDATA[gh_857275425e4c]]></FromUserName><CreateTime>1575542946</CreateTime></xml>"} []
+
+
+
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx559bf9cf416536c8&
+redirect_uri=http://118.190.38.248/wechat/scope/callback&response_type=code&scope=snsapi_userinfo&state=05a995f41ccd90995cc2455042c99bc2&connect_redirect=1&uin=Mjg0NTcyNDY0MA==&key=142d66df0172e41efd055f1e5c361c176dd0f3aa19296d5cfd3807a463caccaf9e761143e6eceae2a99ccbb4c6a7fb59&pass_ticket=24ZuIKTfAnQ1fMRXlTzyjWaZXSNUi8sLzMy7EnQ/wbB/of6bNykEYL5tm 1bpfSSiWCIeTWx9wX2rlykfR39fQ==
+
+
+
+
+http://118.190.38.248/wechat/scope/callback?code=061Jviz82ifrKK0Tehz82Ulpz82Jviz6&state=05a995f41ccd90995cc2455042c99bc2
+
+
+
+header:/ 
+
+用户授权成功回调信息
+	Array ( 
+		[id] => oxyQh1WpluVaxaG_STzgwlZhd18A 
+		[name] => 付强ดาว 
+		[nickname] => 付强ดาว 
+		[avatar] => http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIYDJy7ic0FmzBaroaNic4QcgPW9wgNOwHibY4ib4g8k5MmIMDIbm3YwgVl3H7k0Frf8Z9aO97VR993kQ/132 
+		[email] => 
+		[original] => Array ( 
+				[openid] => oxyQh1WpluVaxaG_STzgwlZhd18A 
+				[nickname] => 付强ดาว 
+				[sex] => 1 
+				[language] => zh_CN 
+				[city] => 通州 
+				[province] => 北京 
+				[country] => 中国 
+				[headimgurl] => http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIYDJy7ic0FmzBaroaNic4QcgPW9wgNOwHibY4ib4g8k5MmIMDIbm3YwgVl3H7k0Frf8Z9aO97VR993kQ/132 
+				[privilege] => Array ( ) 
+			) 
+			[token] => 28_oOmtY0-Tw4WDzfywl-a5YWQVD9pC5nKRXymXlkExFwbV6Yf_qQEtKV0HSMCGZL0JaABhhQKv7QfFLJrjxp4qJg 
+			[provider] => WeChat 
+	)

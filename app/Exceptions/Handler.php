@@ -54,7 +54,48 @@ class Handler extends ExceptionHandler
         }
         // 用户认证的异常，我们需要返回 401 的 http code 和错误信息
         if ($exception instanceof UnauthorizedHttpException) {
+            return response()->json([
+                'status' => 401,
+                'code' => 401,
+                'message' => '登录失效',
+                'data' => $exception->errors(),
+            ]);
             return response($exception->getMessage(), 401);
+        }
+        if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenBlacklisttedException) {
+            return response()->json([
+                'status' => 401,
+                'code' => 401,
+                'message' => 'token登录失效',
+                'data' => $exception->errors(),
+            ]);
+        }
+        // jwttoke你登录失效判断
+        if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
+            return response()->json([
+                'status' => 402,
+                'code' => 402,
+                'message' => 'token登录失效',
+                'data' => $exception->getMessage(),
+            ]);
+        }
+
+        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException) {
+            return response()->json([
+                'status' => 401,
+                'code' => 401,
+                'message' => '请刷新页面，重新登录',
+                'data' => $exception->getMessage(),
+            ]);
+        }
+
+        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+            return response()->json([
+                'status' => 404,
+                'code' => 404,
+                'message' => '页面不存在',
+                'data' => $exception->getMessage(),
+            ]);
         }
         
         return parent::render($request, $exception);

@@ -21,8 +21,8 @@ class CORS
         header('Access-Control-Allow-Origin: *');
  
         $headers = [
-            'Access-Control-Allow-Methods'=> 'POST, GET, OPTIONS, PUT, DELETE',
-            'Access-Control-Allow-Headers'=> 'Content-Type, X-Auth-Token, Origin'
+            'Access-Control-Allow-Methods'=> 'POST, GET, OPTIONS, PUT, DELETE, FILE',
+            'Access-Control-Allow-Headers'=> 'Content-Type, X-Auth-Token, Origin, FORM-DATA'
         ];
         if($request->getMethod() == "OPTIONS") {
             return Response::make('OK', 200, $headers);
