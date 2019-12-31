@@ -108,6 +108,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    // App\Repositories\Tools\EncryptTool::authcode方法使用
+    'authcode_key' => 'K1!(K&3#i6@8*L',
     /*
     |--------------------------------------------------------------------------
     | Logging Configuration

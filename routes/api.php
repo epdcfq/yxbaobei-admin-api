@@ -56,14 +56,28 @@ Route::any('user/register', 'Jwt\AuthController@register');
 			\Illuminate\Http\Request $request) {
 			return $index->$name($request);
 		});
+		// 门店列表
+		Route::resource('/info', 'OrgInfoController');
+		Route::any('/search/options/{name}', function(App\Http\Controllers\Org\SearchOptionController $index, $name, \Illuminate\Http\Request $request) {
+			return $index->$name($request);
+		});
+		Route::any('/show', 'OrgInfoController@show');
+		Route::any('/store', 'OrgInfoController@store');
+
+
+
+	});
+		// 客户中心
+	Route::group(['prefix'=>'ucenter', 'namespace'=>'UCenter'], function(){
+		Route::resource('customer', 'CustomerController');
 	});
 	
 // });
 // Route::any('/org/search/article', 'Org\SearchOptionController@article');
 // // 搜索项查询
-// Route::any('/org/search/options/{name}', function(App\Http\Controllers\Org\SearchOptionController $index, $name, \Illuminate\Http\Request $request) {
-// 	return $index->$name($request);
-// });
+Route::any('/org/search/options/{name}', function(App\Http\Controllers\Org\SearchOptionController $index, $name, \Illuminate\Http\Request $request) {
+	return $index->$name($request);
+});
 
 Route::get('/org/categories/options', 'Org\CategoryController@options');
 // 上传路由

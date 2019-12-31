@@ -32,6 +32,24 @@ class OrgInfoModel extends BaseModel
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
+    // 禁止更新字段
+    protected $guarded = ['id'];
+    // 字段解释
+    protected $allow_field = [
+            'short_name'    => '公司简称',
+            'reg_name'      => '注册人姓名',
+            'reg_phone'     => '注册人手机号',
+            'legal_name'    => '法人姓名',
+            'legal_phone'   => '法人手机号',
+            'business_name' => '公司注册名称',
+            'business_license_num'  => '营业执照信用代码',
+            'business_license_img'  => '营业执照图片',
+            'business_desc' => '经营范围',
+            'status'        => '状态',
+            'created_account_id'    => '创建账号ID',
+            'created_at'    => '创建时间',
+            'updated_at'    => '更新时间'
+        ];
 
     protected $enums = [
         'status' => [0=>'无效', 1=>'有效']
@@ -41,23 +59,5 @@ class OrgInfoModel extends BaseModel
     public function getStatusName($status)
     {
         return $this->getEnums('status', $status);
-    }
-
-    public function filter_field($data=[])
-    {
-        $allow_field = [
-            'name'    => '名称',
-            'desc'     => '描述',
-            'icon_img'  => '图标',
-            'channel_id'   => '频道id',
-            'parentid' => '父级id',
-            'sort' => '排序',
-            'ext'   => '扩展信息',
-            'status' => '状态',
-            'created_at'    => '创建时间',
-            'updated_at'  => '更新时间'
-        ];
-
-        return $data ? array_intersect_key($data, $allow_field) : $allow_field;
     }
 }

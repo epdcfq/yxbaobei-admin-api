@@ -10,6 +10,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
+	protected $page =1;
+	protected $per_page = 20;
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public function __construct()
     {

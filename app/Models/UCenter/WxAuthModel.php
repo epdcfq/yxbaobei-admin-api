@@ -3,10 +3,10 @@
  * 门店分类管理
  * 
  */
-namespace App\Models;
+namespace App\Models\UCenter;
 
 use App\Models\BaseModel;
-use App\Models\WxAuthSource;
+use App\Models\UCenter\WxAuthSource;
 
 class WxAuthModel extends BaseModel
 {
@@ -15,7 +15,7 @@ class WxAuthModel extends BaseModel
      *
      * @var string
      */
-    protected $table = 'f_wx_auth';
+    protected $table = 'f_ucenter_wxauth';
 
     /**
      * 该模型是否被自动维护时间戳

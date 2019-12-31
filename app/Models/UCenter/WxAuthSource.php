@@ -3,7 +3,7 @@
  * 门店分类管理
  * 
  */
-namespace App\Models;
+namespace App\Models\UCenter;
 
 use App\Models\BaseModel;
 
@@ -14,7 +14,7 @@ class WxAuthSourceModel extends BaseModel
      *
      * @var string
      */
-    protected $table = 'f_wx_auth_source';
+    protected $table = 'f_ucenter_wxauth_source';
 
     /**
      * 该模型是否被自动维护时间戳

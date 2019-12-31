@@ -26,7 +26,20 @@ class BaseModel extends Model
     // 枚举型字段
     protected $enums = [];
 
-    protected function getEnums($key, $id)
+    // 字段解释
+    protected $allow_field = [];
+
+    /** 
+     * 字段解释及过滤
+     * @param     array       $data [description]
+     * @return    [type]            [description]
+     */
+    public function filter_field($data=[])
+    {
+        return $data ? array_intersect_key($data, $this->allow_field) : $this->allow_field;
+    }
+
+    public function getEnums($key, $id)
     {
         if (!$key) {
             return $this->enums;
@@ -42,9 +55,15 @@ class BaseModel extends Model
      * 
      * @return    [array]
      */
-    public function queryAll($sql, $params=[], $page=1, $pagesize=20)
+    public function queryAll($sql, $params=[], $orderby='', $page=1, $pagesize=20)
     {
+        if ($orderby) {
+            $sql .= ' ORDER BY '.$orderby;
+        }
         $sql .= ' LIMIT '.($page-1)*$pagesize.','.$pagesize;
+        if (isset($_GET['debug'])) {
+            echo $sql.chr(10);
+        }
         // 查询原生SQL
         $result = DB::select($sql, $params);
         // 将stdObj对象转换为数组格式
@@ -66,5 +85,11 @@ class BaseModel extends Model
         $query = $this->queryAll($sql, $params);
 
         return $query ? array_shift($query) : $query;
+    }
+
+    public function queryCount($sql, $params=[])
+    {
+        $result = DB::select($sql, $params)->get();
+        return $result;
     }
 }

@@ -3,9 +3,9 @@
  * 微信授权相关服务
  * 
  */
-namespace App\Repositories;
+namespace App\Repositories\UCenter;
 
-use App\Models\WxAuthModel;
+use App\Models\UCenter\WxAuthModel;
 
 class WxAuthorizeRepository
 {

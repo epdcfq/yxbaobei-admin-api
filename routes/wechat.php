@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
  */
 // 响应微信服务
 Route::any('/serve', 'ServeController@serve');
+
+
 Route::any('/sign/valid', 'ServeController@valid');
 
 // 微信用户授权
