@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return '';
 });
 // Route::any('/user/login', function(Request $request) {
 // 	exit(json_encode(['code'=>20000, 'data'=>'admin_token_web']));
