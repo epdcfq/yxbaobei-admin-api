@@ -97,5 +97,4 @@ class RuleTool {
 	{
 		return strlen($unionid)>=28 ? true : false;
 	}
-
 }

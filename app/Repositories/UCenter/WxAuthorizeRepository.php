@@ -36,13 +36,11 @@ class WxAuthorizeRepository
 				$where = ['unionid'=>$filter_data['unionid']];
 			}
 			$authInfo = false;
-			$authorInfo = $this->auth->firstOrNe  w($where, $filter_data);
+			$authorInfo = $this->auth->firstOrNew($where, $filter_data);
 			if ($authInfo) {
 				$authInfo = $authInfo->asArray();
 			}
 
-			print_r($authInfo);
-			die;
 			// 保存授权信息
 			$authInfo = $this->getAuthInfo($data['openid'], $data['unionid']);
 			if ($authInfo) {
@@ -63,7 +61,7 @@ class WxAuthorizeRepository
 		
 		return ['data'=>$data, 'result'=>$result, 'filter_data'=>$filter_data];
 	}
-
+	
 	/** 
 	 * 根据授权id获取授权信息
 	 * 

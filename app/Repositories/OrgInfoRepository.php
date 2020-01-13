@@ -9,14 +9,14 @@ namespace App\Repositories;
 use Illuminate\Http\Request;
 use App\Models\OrgInfoModel;
 use App\Repositories\BaseRepository;
-use App\Repositories\UCenter\CustomerAccountRespository;
+use App\Repositories\UCenter\CustomerAccountRepository;
 
 
 class OrgInfoRepository extends BaseRepository
 {
 	protected $org;
 	protected $account;
-	public function __construct(OrgInfoModel $org, CustomerAccountRespository $account)
+	public function __construct(OrgInfoModel $org, CustomerAccountRepository $account)
 	{
 		$this->org = $org;
 		$this->acccount = $account;
@@ -42,7 +42,9 @@ class OrgInfoRepository extends BaseRepository
 	public function createOrgAndAccount($args)
 	{
 		$result = ['account'=>[], 'org'=>[]];
-		// 创建账号及客户信息
+		// 1. 创建门店
+		
+		// 2. 创建门店账号
 		$accountInfo = $this->account->createAccountAndCustomer($args);
 		
 	}
@@ -56,6 +58,24 @@ class OrgInfoRepository extends BaseRepository
 	public function createOrg($args)
 	{
 
+	}
+
+	public function existsOrg($args)
+	{
+		// 拼接查询条件
+		$where = [];
+		if (isset($args['short_name']) && $args['short_name']) {
+			$where['short_name'] = $args['short_name'];
+		}
+		if (isset($args['business_name']) && $args['business_name']) {
+			$where['business_name'] = $args['business_name'];
+		}
+
+		if (!$args || !$where) {
+			return false;
+		}
+
+		return $this->org::where($where)->
 	}
 
 	/** 
@@ -173,7 +193,10 @@ class OrgInfoRepository extends BaseRepository
 		}
 		if (isset($data['business_license_img'])) {
 			$data['business_license_img'] = $this->parseImg($data['business_license_img']);
-		} 
+		}
+		if (isset($data['business_name']) && $data['business_name']) {
+			$data['business_name'] = $data['business_name'];
+		}
 
 		return $data;
 	}

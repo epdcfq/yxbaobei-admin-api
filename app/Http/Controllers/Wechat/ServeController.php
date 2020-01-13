@@ -10,9 +10,15 @@ use Log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use EasyWeChat\Factory;
+use App\Repositories\Wechat\WxMessageRepository;
 
 class ServeController extends Controller
 {
+    protected $wxmessage;
+    public function __construct(WxMessageRepository $wxmessage)
+    {
+        $this->wxmessage = $wxmessage;
+    }
     /**
      * 处理微信的请求消息
      *
@@ -32,6 +38,7 @@ class ServeController extends Controller
                     return '收到事件消息';
                     break;
                 case 'text':
+                    $this->wxmessage->newMessage($message);
                     return '收到文字消息';
                     break;
                 case 'image':
