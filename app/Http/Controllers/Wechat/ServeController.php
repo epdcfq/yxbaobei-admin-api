@@ -33,12 +33,13 @@ class ServeController extends Controller
         //     return "欢迎关注 overtrue！";
         // });
         $app->server->push(function ($message) {
+            $this->wxmessage->newMessage($message);
             switch ($message['MsgType']) {
                 case 'event':
                     return '收到事件消息';
                     break;
                 case 'text':
-                    $this->wxmessage->newMessage($message);
+                    
                     return '收到文字消息';
                     break;
                 case 'image':
