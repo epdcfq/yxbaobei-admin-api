@@ -50,7 +50,7 @@ Route::group(['prefix'=>'test', 'namespace'=>'Test'], function(){
 	# 按钮操作
 	Route::get('/menu/{opt}', 'TestController@menu');
 	# 用户信息
-	Route::get('user/{opt}', 'TestController@user');
+	Route::get('authorize/info', 'AuthorizeController@info');
 	# 用户标签
 	Route::get('tag/{opt}', 'TestController@tag');
 	# 消息测试

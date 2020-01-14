@@ -9,14 +9,17 @@ namespace App\Repositories\Wechat;
 use App\Repositories\BaseRepository;
 use App\Repositories\Tools\EncryptTool;
 use App\Models\WechatEventModel;
+use App\Repositories\Wechat\WxAuthorizeRepository;
 
 class WxEventRepository extends BaseRepository
 {
 	protected $wxevent;
+	protected $wxauthorize;
 
-	public function __construct(WechatEventModel $wxevent)
+	public function __construct(WechatEventModel $wxevent, WxAuthorizeRepository $wxauthorize)
 	{
 		$this->wxevent = $wxevent;
+		$this->wxauthorize = $wxauthorize;
 	}
 
 	/** 
@@ -49,6 +52,15 @@ class WxEventRepository extends BaseRepository
 		// 保存消息
 		$data['event_num'] = 1; // 默认事件次数为1
 		$result = $this->wxevent::create($data);
+
+		/****** 关注公众号，保存用户授权信息 ******/
+		if ($data['event'] == 'subscribe' && $data['openid']) {
+			// 获取用户授权
+			$authorInfo = $this->wxauthorize->getAuthByOpenId($data['openid']);
+			if ($authorInfo) {
+				$this->wxauthorize->addAuthorize($authorInfo);
+			}
+		}
 		
 		return $result;
 	}
