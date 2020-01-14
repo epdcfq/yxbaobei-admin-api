@@ -17,14 +17,13 @@ class MessageController extends Controller
 	public function msg(Request $request)
 	{
 		$data = [
-			'ToUserName'=>'oWRmw0oQFYGDGjXJp_INrbdnOPYU',
-			'FromUserName'=>'oWRmw0sTqZWw8SoQyR3jayHTDuZE',
-			'MsgType'=>'text',
-			'CreateTime'=>time(),
-			'MsgId'=>1234567890123457,
-			'Content'=>'这是文本消息内容，请查收',
-			'MediaId'=>234324324322,
-			'PicUrl'=>'http://iamge.dafds.com/ja.jpg'
+			'ToUserName'=>'gh_857275425e4c',
+			'FromUserName'=>'oxyQh1WpluVaxaG_STzgwlZhd18A',
+			'MsgType'=>'image',
+			'CreateTime'=>'1578966091',
+			'MsgId'=>22605360931853633,
+			'MediaId'=>'Uyqst0cYF1ggYkO6KlWZ1pVcmU9npanmRkJzwrjJjptPIUrEVEGfqojsFp8jDW2l',
+			'PicUrl'=>'http://mmbiz.qpic.cn/mmbiz_jpg/Aia1y9GYBGoIgf4ptQ8NSAib55SGn4fKChLpiaZoj7xK8s3etVx2CYX07xiajp8b1P9Fbwbsez4HHjxAxZTwRDhQvA/0'
 		];
 
 		$result = $this->wxmessage->newMessage($data);
