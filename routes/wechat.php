@@ -55,4 +55,7 @@ Route::group(['prefix'=>'test', 'namespace'=>'Test'], function(){
 	Route::get('tag/{opt}', 'TestController@tag');
 	# 消息测试
 	Route::get('msg/{opt?}', 'MessageController@msg');
+	# 事件推送测试
+	Route::get('event/{opt?}', 'MessageController@event');
+
 });

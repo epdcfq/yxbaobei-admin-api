@@ -5,13 +5,17 @@ namespace App\Http\Controllers\Wechat\Test;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Wechat\WxMessageRepository;
+use App\Repositories\Wechat\WxEventRepository;
+
 
 class MessageController extends Controller
 {
 	protected $wxmessage;
-	public function __construct(WxMessageRepository $wxmessage)
+	protected $event;
+	public function __construct(WxMessageRepository $wxmessage, WxEventRepository $event)
 	{
 		$this->wxmessage = $wxmessage;
+		$this->event = $event;
 	}
 
 	public function msg(Request $request)
@@ -27,6 +31,23 @@ class MessageController extends Controller
 		];
 
 		$result = $this->wxmessage->newMessage($data);
+		return $this->success($result);
+	}
+
+	public function event(Request $request)
+	{
+		$data = [
+			'ToUserName'=>'gh_857275425e4c',
+			'FromUserName'=>'oxyQh1WpluVaxaG_STzgwlZhd18A',
+			'MsgType'=>'event',
+			'CreateTime'=>'1578966091',
+			// 'Event'=>'subscribe',
+			'Event'=>'VIEW',
+			'EventKey'=>'http://118.190.38.248',
+			'MenuId'=>'437175746'
+		];
+
+		$result = $this->event->newEvent($data);
 		return $this->success($result);
 	}
 }

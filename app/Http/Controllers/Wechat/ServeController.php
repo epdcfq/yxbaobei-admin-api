@@ -11,13 +11,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use EasyWeChat\Factory;
 use App\Repositories\Wechat\WxMessageRepository;
+use App\Repositories\Wechat\WxEventRepository;
 
 class ServeController extends Controller
 {
     protected $wxmessage;
-    public function __construct(WxMessageRepository $wxmessage)
+    protected $wxevent;
+    public function __construct(WxMessageRepository $wxmessage, WxEventRepository $wxevent)
     {
-        $this->wxmessage = $wxmessage;
+        $this->wxmessage    = $wxmessage;
+        $this->wxevent      = $wxevent;
     }
     /**
      * 处理微信的请求消息
@@ -34,10 +37,16 @@ class ServeController extends Controller
         // });
         $app->server->push(function ($message) {
             Log::info('$app->server->push', $message);
-            $msg = $this->wxmessage->newMessage($message);
+            // 非事件，记录消息
+            if (!$message['MsgType']!='event') {
+                $msg = $this->wxmessage->newMessage($message);
+            }
+            
             $id = isset($msg['id']) ? '['.$msg['id'].']' : '[0]';
             switch ($message['MsgType']) {
                 case 'event':
+                    $msg = $this->wxevent->newEvent($message);
+                    $id = isset($msg['id']) ? '['.$msg['id'] . ']' : '[0]';
                     return $id.'收到事件消息';
                     break;
                 case 'text':

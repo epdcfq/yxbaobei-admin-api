@@ -8,36 +8,47 @@ namespace App\Repositories\Wechat;
 
 use App\Repositories\BaseRepository;
 use App\Repositories\Tools\EncryptTool;
-use App\Models\WechatMessageModel;
+use App\Models\WechatEventModel;
 
-class WxMessageRepository extends BaseRepository
+class WxEventRepository extends BaseRepository
 {
-	protected $wxmessage;
+	protected $wxevent;
 
-	public function __construct(WechatMessageModel $wxmessage)
+	public function __construct(WechatEventModel $wxevent)
 	{
-		$this->wxmessage = $wxmessage;
+		$this->wxevent = $wxevent;
 	}
 
-
-	public function newMessage($args)
+	/** 
+	 * 新增事件
+	 * 
+	 * @param     [array]      $args [消息推送数据]
+	 * @return    [type]            [description]
+	 */
+	public function newEvent($args)
 	{
 		$result = [];
 
 		// 初始化数据
 		$data = $this->parseField($args);
-		if (!isset($data['msg_id']) || !$data['msg_id']) {
+		if (!isset($data['event']) || !$data['event']) {
 			return [];
 		}
 
 		// 检测消息是否已保存,存在直接返回
-		$result = $this->existsMsgId($data['msg_id']);
+		$result = $this->existsEventId($data['from_user_name'], $data['event'], $data['menu_id']);
 		if ($result) {
+			// 事件次数自增
+			$result = $result->toArray();
+			$this->wxevent->increment('event_num', 1, ['id' => $result['id']]);
+			$result['event_num'] += 1;
+
 			return $result;
 		}
 
 		// 保存消息
-		$result = $this->wxmessage::create($data);
+		$data['event_num'] = 1; // 默认事件次数为1
+		$result = $this->wxevent::create($data);
 		
 		return $result;
 	}
@@ -52,7 +63,7 @@ class WxMessageRepository extends BaseRepository
 	public function parseField($args)
 	{
 		// 数据库允许添加的字段
-		$allow_field = $this->wxmessage->filter_field();
+		$allow_field = $this->wxevent->filter_field();
 		$data = [];
 		foreach ($args as $k=>$value) {
 			$key = EncryptTool::toUnderScore($k);
@@ -80,8 +91,8 @@ class WxMessageRepository extends BaseRepository
 	 * 
 	 * @return    [array]
 	 */
-	public function existsMsgId($msg_id)
+	public function existsEventId($from_user_name, $event, $menu_id)
 	{
-		return $this->wxmessage->where('msg_id', $msg_id)->first();
+		return $this->wxevent->where(['from_user_name'=>$from_user_name, 'event'=>$event, 'menu_id'=>$menu_id])->first();
 	}
 }
