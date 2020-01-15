@@ -56,3 +56,13 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## 安装 PHP 7.2 所需要的包
+yum -y install mod_php72w.x86_64 php72w-cli.x86_64 php72w-common.x86_64 php72w-mysqlnd php72w-fpm.x86_64 php72w-xml.x86_64 php72w-mbstring.x86_64
+
+-- 查找插件
+yum list|grep php|grep xml
+
+-- 重启php
+systemctl start php-fpm
+-- 

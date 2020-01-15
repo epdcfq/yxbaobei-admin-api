@@ -39,7 +39,7 @@ class WxEventRepository extends BaseRepository
 		}
 
 		// 检测消息是否已保存,存在直接返回
-		$result = $this->existsEventId($data['from_user_name'], $data['event'], $data['menu_id']);
+		$result = isset($data['menu_id']) ? $this->existsEventId($data['from_user_name'], $data['event'], $data['menu_id']) : false;
 		if ($result) {
 			// 事件次数自增
 			$result = $result->toArray();
