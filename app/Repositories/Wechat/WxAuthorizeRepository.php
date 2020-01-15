@@ -24,14 +24,14 @@ class WxAuthorizeRepository
 	 * @param     [string]      $open_id [单个用户授权openid]
 	 * @return    [type]               [description]
 	 */
-	public function getAuthByOpenId($openId)
+	public function authorizeByOpenId($openId)
 	{
 		$result = [];
 		if (!$openId) {
 			return $result;
 		}
 
-		// 
+		// 未授权，从微信授权获取
 		$app = app('wechat.official_account');
 		$result = $app->user->get($openId);
 
@@ -44,7 +44,7 @@ class WxAuthorizeRepository
 	 * @param     [array]      $open_ids [多个用户openid]
 	 * @return    [type]                [description]
 	 */
-	public function getAuthByOpenIds($openIds)
+	public function authorizeByOpenIds($openIds)
 	{
 		$result = [];
 		// 格式转换成数组,过滤空/重复值
@@ -97,7 +97,7 @@ class WxAuthorizeRepository
 	}
 
 
-	/******************************************* [2] 系统业务处理 ***********************************************/
+	/******************* [2] 系统业务处理 *******************/
 	/** 
 	 * 新增/更新授权信息
 	 * 
@@ -108,6 +108,8 @@ class WxAuthorizeRepository
 	{
 		$result = [''=>0, 'auth_source_id'=>0, 'state'=>'insert'];
 
+		// f_wechat_authorize索引id
+		$id = isset($data['id']) ? $data['id'] : 0;
 		// 过滤授权数据
 		$data_field = $this->filterAuthData($data);
 		if (!$data_field 
@@ -166,12 +168,39 @@ class WxAuthorizeRepository
 			return false;
 		}
 
-		$state = $this->wxauth->where(['id'=>$id])->update($data);
+		$data_field = $this->filterAuthData($data);
+		$state = $this->wxauth->where(['id'=>$id])->update($data_field);
 		if (!$state) {
 			return false;
 		}
 
 		return $this->wxauth->where(['id'=>$id])->first();
+	}
+
+	/** 
+	 * 根据openId获取授权信息
+	 * 
+	 * @param     [type]      $openId [description]
+	 * @return    [type]              [description]
+	 */
+	public function getAuthorizeByOpenId($openId, $from_wx=true)
+	{
+		if (!$openId) {
+			return false;
+		}
+
+		// 1. 从数据库中获取
+		$result = $this->wxauth->where(['openid'=>$openId])->first();
+		if ($result) {
+			return $result;
+		}
+
+		// 2. 数据库不存在，指定从微信授权获取
+		if ($from_wx) {
+			$result = $this->authorizeByOpenId($openId);
+		}
+
+		return $result;
 	}
 	
 	/** 
@@ -214,7 +243,7 @@ class WxAuthorizeRepository
 		}
 
 		foreach ($data as $k=>&$info) {
-			if ($k == 'tagid_list') {
+			if ($k == 'tagid_list' && is_array($info)) {
 				$info = implode(',', $info);
 			}
 			$info = is_array($info) ? json_encode($info) : (string)$info;
@@ -230,6 +259,41 @@ class WxAuthorizeRepository
 
 		return $data;
 	}
+
+	/** 
+	 * 关注公众号
+	 * 
+	 * @param     [type]      $open_id [description]
+	 * @return    [type]               [description]
+	 */
+	public function subscribe($openId)
+	{
+		// 1. 微信授权信息是否存在
+		$authorInfo = $this->authorizeByOpenId($openId);
+		if (!$authorInfo) {
+			return false;
+		}
+
+		// 更新授权信息
+		$authorInfo['unsubscribe_time'] = 0;
+		return $this->addAuthorize($authorInfo);
+	}
+
+	/** 
+	 * 取消关注公众号
+	 * 
+	 * @param     [type]      $openId [description]
+	 * @return    [type]              [description]
+	 */
+	public function unsubscribe($openId)
+	{
+		$data = [
+			'subscribe'=>0,	# 取消关注
+			'unsubscribe_time' => time()	# 取消关注时间
+		];
+		return $this->wxauth->where(['openid'=>$openId])->update($data);
+	}
+
 
 	/** 
 	 * 微信授权信息列表

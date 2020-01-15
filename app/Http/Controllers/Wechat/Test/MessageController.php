@@ -41,8 +41,8 @@ class MessageController extends Controller
 			'FromUserName'=>'oxyQh1WpluVaxaG_STzgwlZhd18A',
 			'MsgType'=>'event',
 			'CreateTime'=>'1578966091',
-			// 'Event'=>'subscribe',
-			'Event'=>'VIEW',
+			'Event'=>'unsubscribe',
+			// 'Event'=>'VIEW',
 			'EventKey'=>'http://118.190.38.248',
 			'MenuId'=>'437175746'
 		];

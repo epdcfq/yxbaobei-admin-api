@@ -32,18 +32,36 @@ class WxEventRepository extends BaseRepository
 	{
 		$result = [];
 
-		// 初始化数据
+		// 1. 初始化数据
 		$data = $this->parseField($args);
 		if (!isset($data['event']) || !$data['event']) {
 			return [];
 		}
 
-		// 检测消息是否已保存,存在直接返回
+		// 2. 关注/取消公众号，保存用户授权信息
+		if (
+			in_array($data['event'], ['subscribe','unsubscribe']) 
+			&& 
+			$data['from_user_name']) {
+			// 获取用户授权
+			switch ($data['event']) {
+				case 'subscribe':
+					# 关注公众号,保存授权信息
+					$this->wxauthorize->subscribe($data['from_user_name']);
+					break;
+				case 'unsubscribe':
+					# 取消关注公众号, 变更关注状态
+					$this->wxauthorize->unsubscribe($data['from_user_name']);
+					break;
+			}
+		}
+
+		// 3. 检测消息是否已保存,存在直接返回
 		$result = isset($data['menu_id']) ? $this->existsEventId($data['from_user_name'], $data['event'], $data['menu_id']) : false;
 		if ($result) {
 			// 事件次数自增
 			$result = $result->toArray();
-			$this->wxevent->increment('event_num', 1, ['id' => $result['id']]);
+			$this->wxevent->where('id', $result['id'])->increment('event_num', 1);
 			$result['event_num'] += 1;
 
 			return $result;
@@ -53,17 +71,10 @@ class WxEventRepository extends BaseRepository
 		$data['event_num'] = 1; // 默认事件次数为1
 		$result = $this->wxevent::create($data);
 
-		/****** 关注公众号，保存用户授权信息 ******/
-		if ($data['event'] == 'subscribe' && $data['openid']) {
-			// 获取用户授权
-			$authorInfo = $this->wxauthorize->getAuthByOpenId($data['openid']);
-			if ($authorInfo) {
-				$this->wxauthorize->addAuthorize($authorInfo);
-			}
-		}
 		
 		return $result;
 	}
+
 
 	/** 
 	 * 初始化字段，转换成数据库字段格式
