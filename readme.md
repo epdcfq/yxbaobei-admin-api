@@ -57,12 +57,84 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+# PHP安装
+
+## 升级软件及系统内核
+	yum update -y
+## 安装必要安装包
+	yum -y install gcc && yum -y install gcc-c++ && yum -y install make
+## 更新yum源地址，否则无法安装php72
+		rpm -Uvh https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-12.noarch.rpm
+		rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+	或者
+		yum install epel-release -y
+		rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+## 清除已安装php
+	yum -y remove php*
+
+##　查找插件
+	yum list|grep php|grep xml
 ## 安装 PHP 7.2 所需要的包
-yum -y install mod_php72w.x86_64 php72w-cli.x86_64 php72w-common.x86_64 php72w-mysqlnd php72w-fpm.x86_64 php72w-xml.x86_64 php72w-mbstring.x86_64
+	yum -y install mod_php72w.x86_64 php72w-cli.x86_64 php72w-common.x86_64 php72w-mysqlnd php72w-fpm.x86_64 php72w-xml.x86_64 php72w-mbstring.x86_64 
 
--- 查找插件
-yum list|grep php|grep xml
 
--- 重启php
-systemctl start php-fpm
--- 
+## 启动php
+	systemctl enable php-fpm.service
+	systemctl start php-fpm
+
+# NGINX安装
+
+## 安装nginx
+	yum install nginx
+## 启动nginx常用命令
+	systemctl start nginx
+	systemctl stop nginx
+	systemctl restart nginx
+	systemctl status nginx
+# Composer安装
+## 安装命令
+	curl -sS https://getcomposer.org/installer | php
+	sudo mv composer.phar /usr/local/bin/composer
+## 查看版本
+	composer --version
+## 更新composer
+	composer selfupdate
+
+# laravel安装
+## composer安装laravel
+	composer global require "laravel/installer"
+## 创建laravel项目
+	laravel new blog
+# MYSQL安装
+## 下载mysql的repo源
+	cd /usr/local/src
+	wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+## 安装repo包
+	rpm -ivh mysql-community-release-el7-5.noarch.rpm
+	yum repolist all
+## 安装Mysql
+	yum install -y mysql-server
+## 启动mysql
+	systemctl start mysql
+	# 或者
+	service mysqld restart
+	ss -lntp
+
+	# 设置开机启动
+	systemctl enable mysqld
+
+	# MySQL 安全设置（密码）
+	mysql_secure_installation
+## 创建账号
+	# 假设数据库密码为123456
+	mysql -uroot -p123456
+	# 实施环境用户
+	mysql > CREATE USER 'dbuser'@'%' IDENTIFIED BY '123456';
+	mysql > GRANT SELECT,INSERT,UPDATE,DELETE ON *.* TO 'dbuser'@'%';
+
+	# 管理员用户
+	mysql > CREATE USER 'admin'@'%' IDENTIFIED BY '123456';
+	mysql > GRANT ALL ON *.* TO 'admin'@'%';
+	mysql > flush privileges;
+
+	mysql > exit;

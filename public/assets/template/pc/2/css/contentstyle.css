@@ -1,0 +1,21 @@
+
+/* button include */
+.btnstyle .c-btnstyle01 a,.btnstyle .c-btnstyle02 a,.btnstyle .c-btnstyle03 a,.btnstyle .c-btnstyle04 a,.btnstyle .c-btnstyle05 a,.btnstyle .c-btnstyle06 a,.btnstyle .c-btnstyle07 a,.btnstyle .c-btnstyle08 a,.btnstyle .c-btnstyle09 a,.btnstyle .c-btnstyle10 a,.btnstyle .c-btnstyle11 a,.btnstyle .c-btnstyle12 a{width:200px;height: 52px;line-height: 52px;font-size: 16px;}
+.btnstyle .c-btnstyle01 a{background: #0cf;color:#fff;}
+.btnstyle .c-btnstyle02 a{border-radius: 5px;background: #0cf;color:#fff;}
+.btnstyle .c-btnstyle03 a{border-radius:26px;background: #0cf;color:#fff;}
+.btnstyle .c-btnstyle04 a{border:1px solid #0cf;color:#0cf;}
+.btnstyle .c-btnstyle05 a{border-radius: 5px;border:1px solid #0cf;color:#0cf;}
+.btnstyle .c-btnstyle06 a{border-radius: 26px;border:1px solid #0cf;color:#0cf;}
+.btnstyle .c-btnstyle07 a{border-radius:26px;background:#0cf;color:#fff;
+	-webkit-box-shadow:inset 0 -3px 3px rgba(0,0,0,0.3);box-shadow:inset 0 -3px 3px rgba(0,0,0,0.3);}
+.btnstyle .c-btnstyle08 a{border-radius: 5px;background:#0cf;color:#fff;
+	-webkit-box-shadow:inset 0 -3px 3px rgba(0,0,0,0.3);box-shadow:inset 0 -3px 3px rgba(0,0,0,0.3);}
+.btnstyle .c-btnstyle09 a{background:#0cf;
+	-webkit-box-shadow:0 2px 3px rgba(0,0,0,0.3);box-shadow:0 2px 3px rgba(0,0,0,0.3);}
+.btnstyle .c-btnstyle10 a{border-radius:5px;background:#0cf;
+	-webkit-box-shadow:0 2px 3px rgba(0,0,0,0.3);box-shadow:0 2px 3px rgba(0,0,0,0.3);}
+.btnstyle .c-btnstyle11 a{border-radius:15px;background:#0cf;
+	-webkit-box-shadow:0 2px 3px rgba(0,0,0,0.3);box-shadow:0 2px 3px rgba(0,0,0,0.3);}
+.btnstyle .c-btnstyle12 a{background:#0cf;color:#fff;
+	-webkit-box-shadow:inset 0 -3px 3px rgba(0,0,0,0.3);box-shadow:inset 0 -3px 3px rgba(0,0,0,0.3);}

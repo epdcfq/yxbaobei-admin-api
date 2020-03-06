@@ -1,0 +1,215 @@
+@charset "utf-8";
+.pn-frequired{color:red;}
+/*浮动广告右下角弹出样式*/
+.float_ads{width: 300px;height: 0px;position: absolute;bottom: 0px;right: 0px;}
+.float_ads img{width: 100%;}
+.float_ads a{display: block;width: 60px;height: 26px;color: #333;font-family: "Microsoft Yahei";line-height: 26px;text-align: center;background: #fff;opacity: 0.6;position: absolute;top: 0px;right: 0px;}
+.float_ads a:hover{opacity: 0.8;color: #f00;}
+/*浮动广告卷角样式*/
+.cornerFloded{position: absolute;top: 0px;right: 0px;width: 80px;height: 82px;cursor: pointer;z-index: 10;}
+.cornerFloded img{border: 0;position: absolute;top: 0;right: 0;z-index: 10;width: 80px;height: 82px;}
+.cornerFloded .bg_img{position: absolute;top: 0;right: 0;width: 80px;height: 68px;background: url(images/subscribe.png) no-repeat right top;}
+.cornerFloded a.close_but{display: block;width: 60px;height: 26px;color: #333;font-family: "Microsoft Yahei";line-height: 26px;text-align: center;background: #fff;opacity: 0.6;position: absolute;top: 0px;right: 0px;z-index: 20;}
+.cornerFloded a.close_but:hover{opacity: 0.8;color: #f00;}
+/*浮动广告全屏伸缩样式*/
+.flex{width: 1000px;height: 0px;margin: 0 auto;position: absolute;top: 200px;}
+.flex img{width: 100%;height: 100%;}
+.flex a:link,.flex a:visited{text-decoration: none;}
+.flex a{display: block;width: 60px;height: 26px;color: #333;font-family: "Microsoft Yahei";line-height: 26px;text-align: center;background: #fff;opacity: 0.6;position: absolute;top: 0px;right: 0px;}
+.flex a:hover{opacity: 0.8;color: #f00;}
+/*复选框*/
+.jrf_checkbox{padding: 0 0 0 20px;display: inline-block;height: 16px;line-height: 13px;vertical-align: middle;background: url(../../res/jrfcms/img/admin/default/check_icons.png) no-repeat 2px 0px;cursor: pointer;}
+.jrf_checkbox.checkboxChecked{background: url(../../res/jrfcms/img/admin/default/check_icons.png) no-repeat 2px -20px;}
+.content_textarea .g_textarea{padding: 5px 10px;}
+/*便捷服务*/
+.speedyway #channelTree li{width:62px;float: left;text-align: center;padding:0px;border:none;margin:0 7px;}
+.speedyway #channelTree li span{display: block;}
+.speedyway #channelTree li img{margin:11px 0 20px 0;}
+.speedyway .tree_nav li a{display: block;padding:0;background: url(../image/dzBank/speed01.png) no-repeat 1px 0;}
+.speedyway .tree_nav li a:hover,.speedyway .tree_nav li a.current{background: url(../image/dzBank/speed_cur.png) no-repeat 1px 0;}
+.speedyway .tree_nav li a.current span{color:#c8151d;}
+.speedyway .speedtitle{font-size: 18px;text-indent: 11px;}
+.dznav_title{position: relative;clear: both;}
+.dznav_title i{position: absolute;top:34px;left:24px;display: block;width:44px;height:40px;background: url(../image/dzBank/speed_icons.png) no-repeat -38px -80px;}
+.dznav_title span{display: block;}
+.speedyway .speedcon{padding:0 0 0 70px;font-size: 15px;color: #999;}
+.speedyway .tel_num{padding:0 0 0 70px;font-size: 24px;font-weight: bold;font-family:"Arial";color: #c8151d;}
+.speed01 .tree_nav{width:auto;}
+.speed02 .dznav_title{clear:both;padding:0 0 10px 0;}
+.speedyway .speed02 #channelTree li{margin:0 7px 5px;}
+.speedyway .speed02 .formMiddle{width:230px;margin:auto;}
+.speedyway .speed01{overflow: hidden;padding:15px 0 0 0;}
+/*理财模块*/
+.dzlcwrapper .formMiddle{padding:0;}
+.dzlcwrapper .szlc_each{padding:20px 20px;}
+.dzlcwrapper ul{width:100%;overflow: hidden;}
+.dzlcwrapper li{display: none;overflow: hidden;border:1px solid #bbb;border-top:none;}
+.dzlcwrapper li.dz_cur{display: block;}
+.dzlcwrapper li.dz_last{width:;}
+.dzlcwrapper li a{float: left;width:218px;height:287px;border-right:1px solid #bbb;}
+.dzlcwrapper li a:hover{text-decoration: none;}
+.dzlcwrapper li a.dz_last{border-right:none;}
+.dzlcwrapper li h5{width:100%;font-weight:normal;color:#555;line-height:25px;overflow:hidden;text-align:center;}
+.dzlcwrapper li span{display: block;text-align: center;font-size:13px;color:#666;line-height:20px;}
+.dzlcwrapper li .dzbuy_btn{line-height: 26px;float:none;font-size:12px;} 
+.dzlcwrapper li h5 span{float:none;display: block;font-size:14px;color: #333;}
+.dzlcwrapper li p{overflow: hidden;padding:11px 0 0 0;}
+.dzlcwrapper li p .dz_lv{color:#c8151d;font-size:28px;padding:15px 0 12px;}
+.dzlcwrapper .dzbank_btns{bottom:auto;left:auto;top:-35px;right:44px;*top:-27px;}
+.dzlcwrapper .li_btn{float:none;text-align: center;padding:10px 0 0 0;}
+.dzlcwrapper .dzlc_ct{text-align: center;margin-bottom:7px;}
+/*基金贵金属*/
+.dz_finance ul li{overflow: hidden;display: none;border:1px solid #bbb;border-top:none;}
+.dz_finance ul li.dz_cur{display: block;}
+.dz_finance ul{width:1100px;overflow: hidden;}
+.dz_finance .dz_item{float: left;width:218px;height:238px;border-right:1px solid #bbb;}
+.dz_finance .last_item{border-right:none;}
+.dz_finance .dz_inner{padding:20px;text-align: center;}
+.dz_finance .fance_img{text-align: center;}
+.dz_finance .dz_inner h6{padding:5px 0 15px 0;font-size: 16px;font-weight: normal;text-align: center;}
+a.dzbuy_btn,span.dzbuy_btn{display: inline-block;padding:0px 25px;height:26px;border:1px solid #c8151d;background: #c8151d;border-radius:13px;font-size:12px;color: #fff!important;-webkit-transition:all 0.25s ease-in-out 0s;-moz-transition:all 0.25s ease-in-out 0s;-ms-transition:all 0.25s ease-in-out 0s;-o-transition:all 0.25s ease-in-out 0s;transition:all 0.25s ease-in-out 0s;}
+a.dzbuy_btn:hover,span.dzbuy_btn:hover{background: #fff;color: #c8151d!important;text-decoration: none;}
+.dz_finance .dzbank_btns{bottom:auto;left:auto;top:-32px;right:20px;}
+/*栏目导航能点击的*/
+.dz_business .first_lev{position: relative;}
+.dz_business .first_lev b{display: block;position: absolute;top:16px;left:8px;height:15px;border-left:4px solid #c8151d;}
+.dz_business .first_lev i{display: block;position: absolute;top:18px;right:10px;width:11px;height:11px;background: url(../image/dzBank/speed_icons.png) no-repeat 0 -80px;}
+.dz_business .first_lev .a2{padding:0 0 0 10px;font-size: 15px;border-bottom:1px dotted #bbb;}
+.dz_business .tree_nav .first_lev{border:none;}
+.dz_business ul li{line-height: 46px;}
+.dz_business ul li a:hover{color:#c8151d;}
+.dz_business ul li a.current_a{color: #c8151d;}
+.dz_business .navTreeStyle0 .ul_small li a{font-size:13px;padding:0 0 0 15px;background: url(../image/dzBank/speed_icons.png) no-repeat -187px 13px;}
+.dz_business .navTreeStyle0 .ul_small li a:hover,.dz_business .navTreeStyle0 ul li.current_son a.current_a{background: url(../image/dzBank/speed_icons.png) no-repeat -6px -336px;}
+.dz_business .ul_small{margin:10px 0 0 0;}
+.dz_business .first_lev .ul_small li{line-height:30px;border:none;}
+div .dz_business .tree_nav01 .first_lev.current_onhover .a2,div .dz_business .first_lev.current_onhover .a2,div .dz_business .first_lev.current .a2{color:#c8151d;}
+.dz_business .first_lev.current_son .a2{color:#c8151d;}
+.dz_business .first_lev.current_son i{background-position: 0px -112px;}
+/*20160408组织结构样式*/
+div .dz_organization.modulePattern0{width:88%;margin:auto;}
+div .dz_organization.modulePattern0 .formBanner .titleText{border-bottom:2px solid #c8151d;height:46px;line-height:46px;padding:0;}
+div .dz_organization .org_title{width:98.8%;overflow:hidden;border:1px solid #ddd;margin-top:13px;font-size:16px;color:#c8151d;}
+div .dz_organization .org_title.mt20{margin-top:20px;}
+div .dz_organization .org_title p{padding:20px 20px 20px 50px;background:url(../image/dzBank/speed_icons.png) no-repeat 21px -220px;}
+div .dz_organization.modulePattern0 .formMiddle{margin:0;padding:0;width:100%;}
+div .dz_organization .org_title .org_fq{float:left;padding:20px 0 20px 50px;font-size:16px;color:#c8151d;width:90px;background:url(../image/dzBank/speed_icons.png) no-repeat 21px -220px;}
+div .dz_organization .org_title .org_name{float:right;padding:20px 20px 20px 10px;font-size:14px;width:527px;}
+div .dz_organization .org_title .org_name li{float:left;width:31%;height:27px;line-height:27px;}
+div .dz_organization .org_title .org_name li a{width:100%;height:27px;display:block; text-decoration: none;cursor:pointer;}
+div .dz_organization .org_title .org_name li a span{color:#555;background:url(../image/dzBank/speed_icons.png) no-repeat 0 -304px;padding-left:20px;overflow:hidden;}
+div .dz_organization .org_title .org_name li a:hover span{color:#c8151d;background:url(../image/dzBank/speed_icons.png) no-repeat 0 -337px;text-decoration: none;}
+/*20160406理财产品中树形导航样式*/
+.dzlc_treenav .formBanner{display:none;}
+div .dzlc_treenav.modulePattern0 .formMiddle{width:auto;margin:0;padding:0;overflow:visible;border:1px solid #bbb;overflow: hidden;}
+div .dzlc_treenav.modulePattern0 .formMiddle{width:auto;margin:0;padding:0;overflow:visible;border:1px solid #bbb;overflow: hidden;}
+div .dzlc_treenav.modulePattern0 .formMiddle li{border-bottom:1px solid #bbb;font-size:15px;line-height:46px;color:#555;display:inline-block;width:273px;position:relative;border-right:1px solid #bbb;margin-left:-3px;}
+div .dzlc_treenav.modulePattern0 .formMiddle li a{width:100%;color:#333;text-align: center;height:46px;line-height:46px;display:inline-block;}
+div .dzlc_treenav.modulePattern0 .formMiddle li.dz_last{border-right:none;}
+div .dzlc_treenav.modulePattern0 .formMiddle li a:hover,div .dzlc_treenav.modulePattern0 .formMiddle li.current_a a{background:#c8151d;color:#fff;text-decoration: none;}
+div .dzlc_treenav.modulePattern0 .formMiddle li b{position:absolute;right:15px;top:18px;display:inline-block;width:15px;height:15px;background:url(../image/dzBank/speed_icons.png) no-repeat 0 -170px;}
+div .dzlc_treenav.modulePattern0 .formMiddle li a:hover b,div .dzlc_treenav.modulePattern0 .formMiddle li.current_a b{position:absolute;right:15px;top:18px;display:inline-block;width:15px;height:15px;background:url(../image/dzBank/speed_icons.png) no-repeat 0 -200px;}
+div .dzlc_treenav.modulePattern0 .formMiddle li .childfl{width:100%;border:none;border-left:1px solid #bbb;border-right:1px solid #bbb;left:0;display:none;}
+div .dzlc_treenav.modulePattern0 .formMiddle li .childfl a{width:100%;padding:0;text-align:center;border:none;border-bottom:1px solid #bbb;}
+.childfl{z-index:1000;display: none;background: #fff;border:1px solid #bbb;border-bottom:none;}
+.childfl a{display: block;font-size: 14px;padding:12px 0;text-align: center;border-bottom:1px solid #bbb;}
+.childfl a:hover{text-decoration: none;background: #c8151d;color: #fff;}
+/*理财产品查询页面*/
+.dz_check{height:36px;background: #c8151d;border:1px solid #c8151d;color:#fff;text-align: center;padding:0 20px;font-size: 16px;cursor:pointer;}
+.dz_select{float:left;width:160px;height:36px;*height:36px;border:1px solid #bbb;font-family: "Microsoft Yahei";padding:7px 0 7px 10px;color:#666;font-size:14px;line-height:22px;}
+.dz_select option{padding-left:10px;vertical-align: 36px;font-size:14px;}
+.dz_fiance_list{border-top:1px solid #bbb;margin:10px 0 0 0;}
+.dz_fiance_list li{padding:15px 25px 10px;border:1px solid #bbb;border-top:none;}
+.finace_tilte{overflow: hidden;padding:0 0 10px 0;}
+.dz_fiance_list h5{font-size: 16px;font-weight: normal;}
+.dz_fiance_list .dz_checkdetail{height:30px;line-height:30px;padding:0 10px;margin:0 0 0 0;border:1px solid #c8151d;background: #c8151d;color:#fff;}
+.dz_fiance_list .dz_checkdetail:hover{text-decoration: none;background: #fff;color:#c8151d;}
+.dz_fiance_list .dz_state{font-size:14px;padding:0 8px;margin:0 0 0 10px;height:20px;border-radius:2px;line-height:20px;background: #c8151d;color: #fff;}
+.dz_fiance_list p span{display: block;text-align: center;}
+.dz_fiance_list .dz_value{color: #c8151d;font-size: 20px;}
+.dz_fiance_list .dz_text{font-size: 14px;color:#666;}
+.fiance_con{overflow: hidden;}
+.fiance_con p{float: left;padding:0 20px;}
+.fiance_con p.fiance_product{width:214px;}
+.fiance_con p.qgje{width:96px;}
+.fiance_con p.fx{width:90px;}
+.dz_fiance_list .dz_date{font-size: 18px;}
+.dz_fiance_list p.dz_line{border-left:1px solid #ddd;height:58px;padding:0;}
+.dz_fiance_list .fiance_product span{display: inline-block;line-height: 29px;font-size: 14px;}
+.dz_fiance_list .fiance_product .dz_type{color: #333;}
+.dz_fiance_list .issue_date{padding-left:12px;width:170px;}
+.dz_fiance_list .issue_date span{display: inline-block;font-size: 15px;}
+.dz_fiance_list .issue_date span.rq{width:50px;font-size:14px;height:40px;vertical-align: 8px;*vertical-align: 0;}
+.dz_fiance_list .issue_date span.date_time{line-height:20px;width:100px; color:#666;}
+.date_time{color: #666;padding:0 0 0 6px;}
+/*内容页面*/
+.dz_details{overflow: hidden;clear:both;padding:10px 1px;}
+.dz_details a{float: left;width:28%;margin-right:5%;font-size: 14px;line-height: 27px;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;}
+.dz_details a:hover,.dz_details a.currentlyData{text-decoration: none;color: #c8151d;}
+.dz_details a.dz_checked{color: #c8151d;}
+.dz_details i{position: relative;top:-3px;margin:0 5px 0 0;display: inline-block;width:4px;height:4px;background: #888;}
+*.dz_details i{top:-6px;}
+.dz_details a:hover i,.dz_details a.currentlyData i{background: #c8151d;}
+.dz_bustitle{font-weight: normal;}
+/*内容模块*/
+.dz_con01 li{float: left;width:33%;font-size: 14px;} 
+.dz_con01 li a{width:100%;}
+.dz_con01 li a i{display: inline-block;float:none;width:4px;height:4px;background: #888;}
+.dz_con01 li a:hover{color:#c8151d;text-decoration: none;}
+.dz_con01 li a:hover i{background: #c8151d;}
+.dz_con01 li.cur a{color: #c8151d;}
+.dz_con01 h4{font-weight: normal;}
+/*理财产品详情页*/
+.finance_detail h4{font-size: 18px;font-weight: normal;}
+.finance_detail .news_con_tab{width:70%;margin:0 auto;}
+.finance_detail li{overflow: hidden;line-height: 26px;padding:3px 0;float: left;width:45%;font-size: 15px;color: #333;}
+.finance_detail .finance_text{float: left;}
+.finance_detail .fiance_con{float: left;}
+.finance_detail .fiance_con.dz_lv{position: relative;top:-4px;color:#c8151d;font-size: 26px;}
+.dz_tips{clear: both;width:70%;margin:0 auto;padding:20px 0;color:#333;}
+.dz_tips p{font-size: 14px;}
+.dz_tips .dz_tip01{padding:0 0 10px 0;}
+.dz_tips .check_book{font-size: 12px;color: #c8151d;}
+.fp_con{padding:0 0 10px 0;}
+/*边线布局*/
+.dz-row-fluid{border:1px solid #bbb;border-top-color:#c8151d;background: url(/jrfr/image/dzBank/business_line.gif) repeat-y 2px top;}
+.dz-row-border1{border:1px solid #bbb;}
+/*追加到enterprise里的样式 内容页*/
+.Containernews,.Containernews1{padding:0 30px;margin:0 auto;}
+.content_mc .formBanner{height:45px;border-bottom:1px solid #bbb;}
+.content_mc .formBanner .titleText{float: left;line-height:50px;height:45px;text-indent: 0;padding:0 8px;border-bottom:1px solid #0cf;font-weight: normal;font-size:18px;}
+.lyrow .dzlcwrapper .formBannerTitle{border-bottom:none;}
+.dz_style12 .formMiddle,.form_style21 .formMiddle{clear: both;}
+.dz_style12 .formBanner,.dz_style12 .formMiddle{width:88%;margin:0 auto;}
+.lyrow .m_total_list{width:95%;}
+.add_html .formMiddle{padding:0;}
+.dz_style15 .formMiddle{padding:20px 0;}
+.form_style21 .formMiddle{padding:10px;}
+.list_style21 .content_text{font-size:14px;}
+/*评论样式*/
+.content_mc h3{position:relative;height:30px;background: #eee;padding:0 10px;margin:0 0 15px 0;line-height: 30px;}
+.content_mc .answer_list h3 b{color:#333;}
+.content_mc .answer_list h3 .comment_time{float:right;}
+.content_mc .comment_hd{position:absolute;top:-5px;left:-48px;display:block;width:40px;height:40px;background: url(../image/comment_head.png) no-repeat 0 0;background-size: 100% 100%;}
+.content_mc .q_box{width:100%;border:none;}
+.content_mc .answer_list{float:none;width:auto;padding-left:50px;}
+.content_mc p{clear: both;line-height:28px;}
+.content_mc .commen_con{width:95%;padding-left:0;}
+
+
+/*绑定账号*/
+.bind_member{width:1000px;margin:0 auto;}
+.bind_member td{padding:8px 0;}
+.bind_member .bind_title{font-size: 18px;}
+.bind_input	{border:1px solid #B3B9C3;height:28px;padding:0 5px;width:186px;}
+.bind_member .login-button{width:100%;background: #ef4c2e;border:none;margin-top:10px;cursor:pointer;outline:none;color:#fff;text-align: center;height: 36px;line-height: 36px;border-radius: 3px;font-size: 14px;}
+.bind_member .login-button.inputhover,.bind_member .login-button:hover{background: #DC4428;}
+.no_user{font-size: 18px;color: #f00;}
+
+
+/*图片旋转*/
+.box:hover .rotate_btn{display: block;}
+.rotate_btn{display: none;padding: 15px 0 0;position: absolute;top: 100%;left: 50%;transform: translateX(-50%);z-index: 9999;}
+.rotate_btn:before{content: "";display: block;width: 1px;height: 15px;margin: 0 0 0 -1px;position: absolute;top: 0;left: 50%;background: #0cf;}
+.rotate_btn .drag_btn{display: block;width: 20px;height: 20px;background: url("/res/jrfcms/img/admin/default/top_icons.png") no-repeat -298px -38px;}
+.rotate_btn span{position: absolute;bottom: 2px;left: 50%;margin: 0 0 0 15px;color: #0cf;}

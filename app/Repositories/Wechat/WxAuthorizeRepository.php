@@ -11,13 +11,15 @@ use App\Models\WechatAuthorizeModel;
 class WxAuthorizeRepository
 {
 	protected $wxauth;
+	protected $app;
 
 	public function __construct(WechatAuthorizeModel $wxauth)
 	{
 		$this->wxauth = $wxauth;
+		$this->app = app('wechat.official_account');
 	}
 
-	/******************************************* [1] 微信授权基本操作 ***********************************************/
+	/******************** [1] 微信授权基本操作 ********************/
 	/** 
 	 * 根据一个已授权openid获取用户信息(关注公众号openid可直接获取信息)
 	 * 
@@ -32,8 +34,7 @@ class WxAuthorizeRepository
 		}
 
 		// 未授权，从微信授权获取
-		$app = app('wechat.official_account');
-		$result = $app->user->get($openId);
+		$result = $this->app->user->get($openId);
 
 		return $result;
 	}
@@ -54,8 +55,7 @@ class WxAuthorizeRepository
 		}
 
 		// 批量获取用户授权信息
-		$app = app('wechat.official_account');
-		$result = $app->user->select($openIds);
+		$result = $this->app->user->select($openIds);
 
 		return $result;
 	}
@@ -73,8 +73,7 @@ class WxAuthorizeRepository
 			return false;
 		}
 
-		$app = app('wechat.official_account');
-		return $app->user->remark($openId, $remark);
+		return $this->app->user->remark($openId, $remark);
 	}
 
 	/** 
@@ -92,8 +91,7 @@ class WxAuthorizeRepository
 			return $result;
 		}
 
-		$app = app('wechat.official_account');
-		return $app->user->block($openIds);
+		return $this->app->user->block($openIds);
 	}
 
 

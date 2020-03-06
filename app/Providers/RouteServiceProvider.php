@@ -39,6 +39,9 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        // 用户中心路由
+        $this->mapUcenterRoutes();
+
         // 增加微信授权路由
         $this->mapWechatRoutes();
     }
@@ -87,5 +90,31 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/wechat.php'));
     }
 
-    
+    /**
+     * Define the "wechat" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapMinpRoutes()
+    {
+        Route::prefix('minp')
+             ->namespace($this->namespace.'\\Minp')
+             ->group(base_path('routes/minp.php'));
+    }
+
+    /**
+     * Define the "ucenter" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapUcenterRoutes()
+    {
+        Route::prefix('ucenter')
+             ->namespace($this->namespace.'\\UCenter')
+             ->group(base_path('routes/ucenter.php'));
+    }
 }

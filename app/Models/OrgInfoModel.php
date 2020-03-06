@@ -60,4 +60,9 @@ class OrgInfoModel extends BaseModel
     {
         return $this->getEnums('status', $status);
     }
+
+    public function templates()
+    {
+        return $this->hasMany(\App\Models\Org\OrgTemplateModel::class, 'org_id', 'id');
+    }
 }

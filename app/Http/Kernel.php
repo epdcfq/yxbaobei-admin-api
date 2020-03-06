@@ -18,7 +18,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\TrustProxies::class,
+        \App\Http\Middleware\TrustProxies::class
     ];
 
     /**
@@ -71,5 +71,9 @@ class Kernel extends HttpKernel
         'cors' => \App\Http\Middleware\CORS::class,
         # 微信授权中间件
         'wechat.oauth' => \Overtrue\LaravelWeChat\Middleware\OAuthAuthenticate::class,
+        // 获取头部公共变量
+        'header.params'=> \App\Http\Middleware\HeaderParams::class,
+        // 产品参数检测中间件
+        'goods.check' => \App\Http\Middleware\GoodsCheck::class
     ];
 }

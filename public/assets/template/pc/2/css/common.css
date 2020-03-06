@@ -1,0 +1,47 @@
+@charset "utf-8";
+/*Clear Default Styles*/
+html,body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,form,img,dl,dt,dd,table,th,td,blockquote,fieldset,div,strong,label,em,a,span{margin: 0;padding: 0;}
+body{line-height: 1.5;font-size: 12px;font-family: "Microsoft Yahei",Arial;color: #333;}
+ul,ul li{list-style: none;}
+input,button ,table{margin: 0;font-size: 14px;vertical-align: middle;}
+input{outline: none;font-family: "Microsoft Yahei";}
+b{font-weight: normal;}
+i{font-style: normal;}
+table{border-collapse: collapse;border-spacing: 0;}
+img{border: none;}
+a{blr:expression(this.onFocus=this.blur());word-wrap: break-word;word-break: normal;}
+a:focus{outline: none;}
+a{text-decoration: none;color: #333;}
+a:hover{text-decoration: none;}
+input:focus,input[type="text"]:focus{outline: none;border-color:#0cf;}
+input[type="password"]{-webkit-appearance: none;-moz-appearance: none;appearance: none;}
+::-webkit-scrollbar{width: 4px;height: 4px;cursor: pointer;}
+::-webkit-scrollbar-track{background-color: #ddd;border-radius: 10px;}
+::-webkit-scrollbar-thumb{border-radius: 10px;background-color: #bbb;}
+.radios input{display: none;}
+.cl{clear: both;}
+.h8{height: 8px;_font-size: 0;}
+.h2{height: 2px;_font-size: 0;}
+.fl{float: left;}
+.fr{float: right;}
+.ovh{overflow: hidden;}
+.nmr{margin-right: 0!important;}
+.clearfix:after{content: "";display: block;clear: both;font-size: 0;height: 0;line-height: 0;overflow: hidden;}
+@font-face{
+	font-family: 'icomoon';
+	src: url('/res/jrfcms_mobi/css/icomoon/icomoon.eot?-2mgmdr&v=121');
+	src: url('/res/jrfcms_mobi/css/icomoon/icomoon.eot?#iefix-2mgmdr&v=121') format('embedded-opentype'),url('/res/jrfcms_mobi/css/icomoon/icomoon.woff?-2mgmdr&v=121') format('woff'),url('/res/jrfcms_mobi/css/icomoon/icomoon.ttf?-2mgmdr&v=121') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="icon-"],[class*="icon-"]{
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

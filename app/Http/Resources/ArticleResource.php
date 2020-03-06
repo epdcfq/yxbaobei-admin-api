@@ -8,7 +8,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
-use App\Http\Resources\ArticleContentResource;
 
 class ArticleResource extends Resource
 {

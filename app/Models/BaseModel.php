@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use \DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 
 class BaseModel extends Model
@@ -26,9 +27,15 @@ class BaseModel extends Model
     // 枚举型字段
     protected $enums = [];
 
+    // 受保护字段
+    protected $guarded = ['id'];
+
+    // 百度名单列表
+    protected $fillable = ['*'];
+
     // 字段解释
     protected $allow_field = [];
-
+    
     /** 
      * 字段解释及过滤
      * @param     array       $data [description]
@@ -36,7 +43,17 @@ class BaseModel extends Model
      */
     public function filter_field($data=[])
     {
-        return $data ? array_intersect_key($data, $this->allow_field) : $this->allow_field;
+        static $field = [];
+        // 获取数据表字段数组
+        if (!isset($field[$this->table])) {
+            $field[$this->table] = Schema::getColumnListing($this->table);
+        }
+        // 控制判断
+        if (!$field[$this->table]) {
+            return [];
+        }
+
+        return $data ? array_intersect_key($data, array_flip($field[$this->table])) : $field[$this->table];
     }
 
     public function getEnums($key, $id)
@@ -85,11 +102,5 @@ class BaseModel extends Model
         $query = $this->queryAll($sql, $params);
 
         return $query ? array_shift($query) : $query;
-    }
-
-    public function queryCount($sql, $params=[])
-    {
-        $result = DB::select($sql, $params)->get();
-        return $result;
     }
 }

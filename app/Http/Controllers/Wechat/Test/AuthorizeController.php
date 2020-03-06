@@ -19,7 +19,7 @@ class AuthorizeController extends Controller
 	{
 		$openId = 'oxyQh1WpluVaxaG_STzgwlZhd18A';
 		// echo $openId;die;
-		$result = $this->authorize->getAuthByOpenId($openId);
+		$result = $this->authorize->authByOpenId($openId);
 		$data = [];
 		if ($result) {
 			$result['openid'] .= 'B';

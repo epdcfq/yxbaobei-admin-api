@@ -1,0 +1,40 @@
+@charset "utf-8";
+/*PC版设计模式下除模块弹框外的样式，例如：操作条、左侧设置等*/
+/************图片模块 start************/
+/*图片形状*/
+.moduleLayer .shape_glide{float: none;width: auto;position: absolute;border: 1px solid #ddd;background: #fff;top: 46px;left: 115px;width:533px;}
+.moduleLayer .shape_box{padding:10px 15px;overflow: hidden;}
+.shape_box .shape_circle,.shape_box .shape_square,.shape_box .shape_rectangle,.shape_box .shape_radius{float: left;background: #ccc;margin:4px 15px 4px 0;cursor: pointer;position: relative;}
+.shape_box .shape_circle{width:28px;height: 28px;border-radius: 50%;}
+.shape_box .shape_square{width:26px;height: 26px;margin-top:5px;margin-bottom:5px;}
+.shape_box .shape_rectangle{width: 28px;height:20px;margin-top:8px;margin-bottom: 8px;}
+.shape_box .shape_radius{width:28px;height: 20px;margin-top:8px;margin-bottom: 8px;border-radius:3px;}
+.moduleLayer .shape_glide .barNum{width:20px;}
+.shape_glide.c-moduleopa .seekbar{width: 100%;box-sizing: border-box;height: 32px;border: none;border-top: 1px solid #ddd;position: relative;}
+.shape_glide.c-moduleopa .c-handhelp,.moduleLayer .shape_glide.c-moduleopa .c-handhelp .handle{width: 115px;}
+.shape_box span:nth-child(12),.shape_box span:nth-child(24){margin-right: 0;}
+.shape_img{float:left;width:28px;height:28px;margin:4px 15px 4px 0;opacity: 0.5;position: relative;cursor: pointer;background-repeat: no-repeat;background-position: center;background-size: contain;}
+.shape_box span.cur i{display: inline-block;width:10px;height:10px;margin:-5px 0 0 -5px;background: url(/jrfr/image/big_cur.png) no-repeat center center;background-size: contain;position: absolute;top:50%;left:50%;}
+.shape_box .shape14,.shape_box .shape17{width:38px;margin: 4px 10px 4px -5px;}
+.shape_box .shape05,.shape_box .shape24{background-size: 90%;}
+.shape_box .shape05{background-image: url(/res/jrfcms/img/module/mobishape5.png);}
+.shape_box .shape06{background-image: url(/res/jrfcms/img/module/mobishape6.png);}
+.shape_box .shape07{background-image: url(/res/jrfcms/img/module/mobishape7.png);}
+.shape_box .shape08{background-image: url(/res/jrfcms/img/module/mobishape8.png);}
+.shape_box .shape09{background-image: url(/res/jrfcms/img/module/mobishape9.png);}
+.shape_box .shape10{background-image: url(/res/jrfcms/img/module/mobishape10.png);}
+.shape_box .shape11{background-image: url(/res/jrfcms/img/module/mobishape11.png);}
+.shape_box .shape12{background-image: url(/res/jrfcms/img/module/mobishape12.png);}
+.shape_box .shape13{background-image: url(/res/jrfcms/img/module/mobishape13.png);}
+.shape_box .shape14{background-image: url(/res/jrfcms/img/module/mobishape14.png);}
+.shape_box .shape15{background-image: url(/res/jrfcms/img/module/mobishape15.png);}
+.shape_box .shape16{background-image: url(/res/jrfcms/img/module/mobishape16.png);}
+.shape_box .shape17{background-image: url(/res/jrfcms/img/module/mobishape17.png);}
+.shape_box .shape18{background-image: url(/res/jrfcms/img/module/mobishape18.png);}
+.shape_box .shape19{background-image: url(/res/jrfcms/img/module/mobishape19.png);}
+.shape_box .shape20{background-image: url(/res/jrfcms/img/module/mobishape20.png);}
+.shape_box .shape21{background-image: url(/res/jrfcms/img/module/mobishape21.png);}
+.shape_box .shape22{background-image: url(/res/jrfcms/img/module/mobishape22.png);}
+.shape_box .shape23{background-image: url(/res/jrfcms/img/module/mobishape23.png);}
+.shape_box .shape24{background-image: url(/res/jrfcms/img/module/mobishape24.png);}
+/************图片模块 end************/

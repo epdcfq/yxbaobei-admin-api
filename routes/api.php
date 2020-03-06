@@ -11,7 +11,28 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
+|  创建资源类控制器  php artisan make:controller Org/ChannelController --resource
 */
+Route::group(['prefix'=>'auth', 'namespace'=>'UCenter'], function($router){
+	# 登录(手机号+密码)
+    Route::any('loginbypwd', 'AuthController@loginbypwd');
+    # 登录(手机号+验证码)
+    Route::any('loginbycode', 'AuthController@loginbycode');
+
+    # 当前登录用户信息(手机号+验证码)
+    Route::any('info', 'AuthController@info');
+
+	# 退出
+    Route::any('logout', 'AuthController@logout');
+    # 刷新jwt-token
+    Route::any('refresh', 'AuthController@refresh');
+    # 我的
+    Route::any('me', 'AuthController@me');
+    /****** 微信授权  ******/
+    Route::any('code2session', 'AuthController@code2session');
+});
+
+
 
 Route::get('company/name', 'HomeController@company');
 
@@ -46,7 +67,9 @@ Route::any('user/register', 'Jwt\AuthController@register');
 	// 门店路径
 	Route::group(['prefix'=>'org', 'namespace'=>'Org'], function(){
 		// 资讯资源路由
-		Route::resource('/articles', 'ArticleController');
+		Route::resource('/goods', 'GoodsController');
+		// 栏目路由
+		Route::resource('/channel', 'ChannelController');
 		// 分类资源路由
 		Route::resource('/categories', 'CategoryController');
 		// 搜索项查询
@@ -56,8 +79,9 @@ Route::any('user/register', 'Jwt\AuthController@register');
 			\Illuminate\Http\Request $request) {
 			return $index->$name($request);
 		});
-		// 门店列表
+		// 门店管理资源类
 		Route::resource('/info', 'OrgInfoController');
+		
 		Route::any('/search/options/{name}', function(App\Http\Controllers\Org\SearchOptionController $index, $name, \Illuminate\Http\Request $request) {
 			return $index->$name($request);
 		});

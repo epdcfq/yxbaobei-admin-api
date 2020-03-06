@@ -45,7 +45,7 @@ return [
             // token验证改为passport授权
             'driver' => 'jwt',
             // 'driver' => 'passport',
-            'provider' => 'users',
+            'provider' => 'f_ucenter_account',
         ],
         // admin配置
         // 'admin' => [
@@ -74,7 +74,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\UCenter\UCenterAccountModel::class,
         ],
 
         // 'users' => [

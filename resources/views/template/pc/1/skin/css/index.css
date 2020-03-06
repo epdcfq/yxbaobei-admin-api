@@ -1,0 +1,590 @@
+/* 织梦58（dede58.com）做最好的织梦整站模板下载网站 */
+/* bannercss */
+.slideBox {
+	width: 100%;
+	height: 777px;
+	overflow: hidden;
+	position: relative;
+}
+.slideBox .hd {
+	height: 15px;
+	overflow: hidden;
+	position: absolute;
+	right: 49%;
+	bottom: 15px;
+	z-index: 1;
+}
+.slideBox .hd ul {
+	overflow: hidden;
+	zoom: 1;
+	float: left;
+}
+.slideBox .hd ul li {
+	float: left;
+	margin: 0 3px;
+	width: 11px;
+	height: 11px;
+	cursor: pointer;
+	background: #fff;
+	border-radius: 50%;
+	transition: all .8s ease;
+	-moz-transition: all .8s ease;
+	-webkit-transition: all .8s ease;
+	-o-transition: all .8s ease;
+}
+.slideBox .hd ul li.on {
+	background: #df0024;
+	color: #fff;
+	width: 30px;
+	border-radius: 30px;
+}
+.slideBox .bd {
+	position: relative;
+	height: 100%;
+	z-index: 0;
+}
+.slideBox .bd li {
+	zoom: 1;
+	vertical-align: middle;
+	display: block;
+	height: 777px;
+}
+/* 下面是前/后按钮代码，如果不需要删除即可 */
+.slideBox .prev, .slideBox .next {
+	position: absolute;
+	left: 3%;
+	top: 50%;
+	margin-top: -25px;
+	display: block;
+	width: 32px;
+	height: 40px;
+	background: url(../img/slider-arrow.png) -110px 5px no-repeat;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+.slideBox .next {
+	left: auto;
+	right: 3%;
+	background-position: 8px 5px;
+}
+.slideBox .prev:hover, .slideBox .next:hover {
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.slideBox .prevStop {
+	display: none;
+}
+.slideBox .nextStop {
+	display: none;
+}
+/*产品中心*/
+.index_pro {
+	overflow: hidden;
+	margin: 85px 0;
+	background: url(../img/bjhua01.jpg) no-repeat right center;
+}
+.cofenlei {
+	margin-top: 59px;
+	overflow: hidden;
+	width: 548px;
+	float: left;
+}
+.cofenlei a {
+	display: block;
+	float: left;
+}
+/* 推荐产品css */
+.tjchanpin {
+	width: 638px;
+	float: right;
+	border: 5px solid #f5f5f5;
+	margin-top: 59px;
+	position: relative;
+	z-index: 99;
+}
+.slideBox2 {
+	width: 638px;
+	height: 335px;
+	overflow: hidden;
+	position: relative;
+}
+.slideBox2 .hd {
+	height: 15px;
+	overflow: hidden;
+	position: absolute;
+	right: 40%;
+	bottom: 8px;
+	z-index: 1;
+}
+.slideBox2 .hd ul {
+	overflow: hidden;
+	zoom: 1;
+	float: left;
+}
+.slideBox2 .hd ul li {
+	float: left;
+	margin: 0 3px;
+	width: 11px;
+	height: 11px;
+	cursor: pointer;
+	background: rgba(0,0,0,0.2);
+	border-radius: 50%;
+	transition: all .8s ease;
+	-moz-transition: all .8s ease;
+	-webkit-transition: all .8s ease;
+	-o-transition: all .8s ease;
+}
+.slideBox2 .hd ul li.on {
+	background: #df0024;
+	color: #fff;
+	width: 30px;
+	border-radius: 30px;
+}
+.slideBox2 .bd2 {
+	position: relative;
+	height: 100%;
+	z-index: 0;
+}
+.slideBox2 .bd2 li {
+	zoom: 1;
+	vertical-align: middle;
+	display: block;
+	height: 335px;
+}
+.slideBox2 .bd2 li img {
+	display: block;
+	width: 100%;
+}
+.slideBox2 .bd2 li * {
+	transition: all .8s ease;
+	-moz-transition: all .8s ease;
+	-webkit-transition: all .8s ease;
+	-o-transition: all .8s ease;
+}
+/* 下面是前/后按钮代码，如果不需要删除即可 */
+.slideBox2 .prev, .slideBox2 .next {
+	position: absolute;
+	left: 3%;
+	top: 50%;
+	margin-top: -25px;
+	display: block;
+	width: 32px;
+	height: 40px;
+	background: url(../img/slider-arrow.png) -110px 5px no-repeat;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+.slideBox2 .next {
+	left: auto;
+	right: 3%;
+	background-position: 8px 5px;
+}
+.slideBox2 .prev:hover, .slideBox2 .next:hover {
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.slideBox2 .prevStop {
+	display: none;
+}
+.slideBox2 .nextStop {
+	display: none;
+}
+.pro_title {
+	width: 100%;
+	text-align: center;
+	line-height: 40px;
+	background: rgba(0,0,0,.6);
+	color: #fff;
+	position: absolute;
+	left: 0;
+	bottom: -50px;
+	z-index: 9999999;
+	font-size: 14px;
+}
+.tjchanpin:hover .pro_title {
+	bottom: 0px;
+}
+.tjchanpin:hover .hd {
+	display: none;
+}
+/*产品中心css结束*/
+
+/*传承工艺*/
+.gongyi {
+	overflow: hidden;
+	margin-top: 15px;
+	background: url(../img/bjhua02.jpg) no-repeat left 275px;
+}
+.gongyi img {
+	display: block;
+}
+.gongyi img.gongyimain {
+	margin-top: 62px;
+}
+/*  关于我们 */
+.about {
+	background: url(../img/aboutpic.jpg) no-repeat center top;
+	margin: 85px 0;
+	overflow: hidden;
+	height: 680px;
+}
+.aboutmain {
+	width: 1200px;
+	margin: 330px auto 0 auto;
+	background: #fff;
+	box-shadow: 0px 0px 8px 8px rgba(0,0,0,.05);
+	height: 335px;
+}
+.about_left {
+	width: 764px;
+	float: left;
+	padding: 53px;
+}
+.about_title {
+	font-size: 16px;
+	color: #333;
+	line-height: 40px;
+}
+.about_note {
+	font-size: 13px;
+	color: #999;
+	line-height: 30px;
+}
+.about_url {
+	width: 115px;
+	height: 40px;
+	line-height: 40px;
+	display: block;
+	text-align: center;
+	border: 1px solid #df0024;
+	color: #df0024;
+	font-size: 14px;
+	margin-top: 23px;
+}
+.about_right {
+	width: 320px;
+	float: right;
+	height: 335px;
+	background: url(../img/aboutfzbj.jpg) no-repeat;
+	position: relative;
+}
+.about_right .abr01 {
+	display: block;
+	font-size: 16px;
+	line-height: 35px;
+	margin: 47px 0 0 48px;
+	color: #fff;
+}
+.about_right .abr02 {
+	display: block;
+	font-size: 20px;
+	text-transform: uppercase;
+	color: #fff;
+	margin-left: 48px;
+	font-weight: 700;
+}
+.about_right a {
+	width: 100%;
+	height: 70px;
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0px;
+}
+/*专利证书*/
+.zlzs_title {
+	font-size: 13px;
+	line-height: 22px;
+	text-align: center;
+	color: #744c3c;
+}
+.zlzs_title img {
+	padding-bottom: 10px;
+}
+.picScroll-left03 {
+	overflow: hidden;
+	position: relative;
+	margin-top: 30px;
+}
+.picScroll-left03 .bd2 {
+	overflow: hidden;
+	position: relative;
+}
+.picScroll-left03 .tempWrap {
+	width: 1200px!important;
+}
+.picScroll-left03 .bd2 ul {
+	overflow: hidden;
+	zoom: 1;
+}
+.picScroll-left03 .bd2 ul li {
+	margin: 0 12px;
+	float: left;
+	_display: inline;
+	overflow: hidden;
+	text-align: center;
+	background: url(../img/zsbj.png) no-repeat;
+	width: 196px;
+	height: 287px;
+	padding: 10px;
+}
+.picScroll-left03 .bd2 ul li .pic {
+	text-align: center;
+}
+.picScroll-left03 .bd2 ul li .pic img {
+	width: 196px;
+	height: 287px;
+	display: block;
+}
+/* 证书结束 */
+
+
+
+
+
+
+/*新闻*/
+.innews {
+	overflow: hidden;
+	margin-top: 60px;
+}
+.index_news {
+	padding: 80px 0;
+	margin-top: 85px;
+	background: #f5f5f5;
+}
+.left-wrap {
+	width: 535px;
+	margin-left: 20px;
+}
+.fl {
+	float: left;
+	display: inline;
+}
+.left-wrap .img {
+	display: block;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+}
+.left-wrap .img img {
+	-webkit-transform: translateZ(0px);
+	transform: translateZ(0px);
+	-webkit-transition: -webkit-transform 0.3s ease 0s;
+	transition: transform 0.3s ease 0s;
+}
+.left-wrap .cont {
+	margin-top: 25px;
+}
+.left-wrap .tit-box {
+	line-height: 32px;
+}
+.left-wrap .tit-box .stt {
+	font-size: 16px;
+	display: block;
+	color: #283c51;
+	height: 40px;
+	width: 445px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.left-wrap .tit-box .stt a {
+	color: #333;
+}
+.left-wrap .tit-box .date {
+	font-size: 14px;
+	color: #6d6d6d;
+	opacity: 0.3;
+	filter: alpha(opacity=30);
+}
+.left-wrap .word {
+	line-height: 24px;
+}
+.left-wrap .word a {
+	color: #999;
+	font-size: 14px;
+	display: inline-block;
+}
+.right-list {
+	width: 600px;
+}
+.fr {
+	float: right;
+	display: inline;
+}
+.right-list li {
+	position: relative;
+	-webkit-transition: background 0.3s ease 0s;
+	transition: background 0.3s ease 0s;
+	display: block;
+	clear: both;
+	overflow: hidden;
+	padding: 20px 20px 45px 20px;
+	background: #f5f5f5;
+	margin-bottom: 16px;
+}
+.right-list li .left-bord {
+	display: none;
+	width: 5px;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: #6caf35;
+}
+.right-list li .num {
+	width: 122px;
+	text-align: center;
+	line-height: 90px;
+	font-size: 68px;
+	color: #6a6a6a;
+}
+.right-list li .line {
+	display: inline-block;
+	width: 1px;
+	height: 76px;
+	background-color: #6b6a6a;
+	margin-top: 12px;
+}
+.right-list li .cont-wrap {
+}
+.right-list li .tit-box {
+	line-height: 35px;
+}
+.right-list li .tit-box span {
+	font-size: 16px;
+	color: #999;
+}
+.tit-box {
+	overflow: hidden;
+}
+.right-list li .tit {
+	display: inline-block;
+	font-size: 16px;
+	color: #333;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+	width: 370px;
+}
+.right-list li .date {
+	display: inline-block;
+	font-size: 14px;
+	color: #232323;
+	opacity: 0.3;
+	filter: alpha(opacity=30);
+}
+.right-list li .word {
+	line-height: 24px;
+	margin-top: 10px;
+	clear: both;
+}
+.right-list li .word a {
+	color: #999;
+	font-size: 14px;
+}
+.cont_time {
+	width: 57px;
+	text-align: center;
+	font-size: 30px;
+	margin-top: 11px;
+	margin-right: 20px;
+	color: #01459c;
+	line-height: 20px;
+	padding: 15px 20px 10px 0;
+	border-right: 1px solid #ddd;
+}
+.cont_time span {
+	display: block;
+	font-size: 12px;
+}
+.news_url02 {
+	width: 115px;
+	height: 40px;
+	line-height: 40px;
+	display: block;
+	text-align: center;
+	border: 1px solid #df0024;
+	color: #df0024;
+	font-size: 14px;
+	margin-top: 23px;
+}
+.news_url02:hover {
+	color: #fff;
+	border: 1px solid #df0024;
+	background: #df0024;
+}
+.pro_title {
+}
+
+
+.work{
+    background: #f7f9f9;
+}
+.worklie{
+    width: 100%;
+    overflow: hidden;
+    margin: 130px auto;
+}
+.worklie li{
+    float: left;
+    width: 20.2%;
+    margin-right: 6.1%;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+.worklie li:hover{
+    border: 1px solid #999;
+    box-shadow: 0 0 10px #999;
+}
+.worklie li:nth-of-type(4n){
+    margin-right: 0;
+}
+.work-icon{
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 20%;
+}
+.work-icon i{
+    font-size: 100px;
+    color: #666;
+}
+.work-icon i:hover{
+    color: #333;
+}
+.work-text{
+    width: 60%;
+    margin: 10% auto;
+    font-size: 16px;
+    line-height: 32px;
+    color: #999;
+    text-align: center;
+    height: 60px;
+    overflow: hidden;
+}
+.wk-headbg{
+    width: 100%;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background: url(../img/wkbg.png);
+    background-size: 100% 100%;
+}
+.wk-headbg:hover{
+    width: 100%;
+    background: url(../img/wkbg2.png);
+    background-size: 100% 100%;
+    color: #f0f0f0;
+}
+.wk-head{
+    width: 60%;
+    margin: 0 auto;
+    font-size: 24px;
+    padding: 14% 0;
+    text-align: center;
+    height: 30px;
+    overflow: hidden;
+}

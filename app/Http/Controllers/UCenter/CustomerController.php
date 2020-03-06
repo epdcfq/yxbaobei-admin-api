@@ -4,12 +4,12 @@ namespace App\Http\Controllers\UCenter;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\UCenter\CustomerAccountRepository;
+use App\Repositories\UCenter\UCenterAccountRepository;
 
 class CustomerController extends Controller
 {
 	protected $customer;
-	public function __construct(CustomerAccountRepository $customer) 
+	public function __construct(UCenterAccountRepository $customer) 
 	{
 		$this->customer = $customer;
 	}

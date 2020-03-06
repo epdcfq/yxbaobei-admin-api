@@ -8,21 +8,22 @@ namespace App\Repositories;
 
 use Illuminate\Http\Request;
 use App\Models\OrgInfoModel;
+use App\Models\Org\OrgTemplateModle;
 use App\Repositories\BaseRepository;
-use App\Repositories\UCenter\CustomerAccountRepository;
+use App\Repositories\UCenter\UCenterAccountRepository;
 
 
 class OrgInfoRepository extends BaseRepository
 {
 	protected $org;
 	protected $account;
-	public function __construct(OrgInfoModel $org, CustomerAccountRepository $account)
+	public function __construct(OrgInfoModel $org, UCenterAccountRepository $account)
 	{
 		$this->org = $org;
 		$this->acccount = $account;
 	}
 
-	public function getOrgById($id)
+	public function getOrgById($id, $template=false)
 	{
 		$result = [];
 		if (!$id) {
@@ -30,6 +31,9 @@ class OrgInfoRepository extends BaseRepository
 		}
 
 		$result = $this->org::find($id);
+		if ($template) {
+			$result->templates;
+		}
 		return $result;
 	}
 
@@ -75,7 +79,7 @@ class OrgInfoRepository extends BaseRepository
 			return false;
 		}
 
-		return $this->org::where($where)->
+		// return $this->org::where($where)->
 	}
 
 	/** 
@@ -131,7 +135,6 @@ class OrgInfoRepository extends BaseRepository
 		// 初始化页码
 		$this->parsePaginate($args);
 
-		// echo 2;die;
 		$search = $this->buildOrgWhere($args);
 		$sql = 'select :field from f_org_info WHERE '.$search['where'];
 		$result['list'] = $this->org->queryAll(str_replace(':field', '*', $sql), $search['params'], 'created_at desc', $this->page, $this->limit);
@@ -211,4 +214,104 @@ class OrgInfoRepository extends BaseRepository
 		unset($data['created_at'], $data['updated_at']);
 		return $data;
 	}
+
+	/** 
+	 * 生成门店小程序二维码(限制100000个)
+	 * 
+	 * @param     [int]     $org_id [门店id]
+	 * @param     [int]     $width  [小程序码大小]
+	 * 
+	 * @return    [type]              [description]
+	 */
+	public function createQRCode($org_id, $width=600, $force=false)
+	{
+		if (!$org_id) {
+			return $this->codeMsg(2000, '缺少门店id');
+		}
+
+		// 1. 文件路径及名称
+		$path = './uploads/qrcode/limit/org/'.$org_id;
+		$filename = 'qrcode-'.$width.'.png';
+		$filepath = $path.'/'.$filename;
+
+		# 创建目录
+		if (!file_exists($path) && !mkdir($path, 0777, true)) {
+			return $this->codeMsg(2001, '路径创建失败');
+		}
+
+		// 2. 不强制更新，文件存在直接返回
+		if (!$force && is_file($filepath)) {
+			return $this->codeMsg(300, ['path'=>$filepath]);
+		}
+
+		// 3. 请求微信服务，生成小程序码
+		$app = app('wechat.mini_program');
+		$response = $app->app_code->get('pages/login/login', ['width'=>$width, 'scene'=>'org_id='.$org_id]);
+		# 3.1 生成失败，返回消息
+		if (!($response instanceof \EasyWeChat\Kernel\Http\StreamResponse)) {
+			return $this->codeMsg(2001, $response['errmsg']);
+		}
+
+		# 3.2 保存文件
+		$response->saveAs($path, $filename);
+		if (!is_file($filepath)) {
+			return $this->codeMsg(2002, '二维码保存本地失败');
+		}
+	    
+	    return $this->codeMsg(200, ['path'=>$filepath]);
+	}
+
+	/** 
+	 * 生成无限制小程序二维码
+	 * 
+	 * @param     [int]     $org_id [门店id]
+	 * @param     [int]     $width  [小程序码大小]
+	 * 
+	 * @return    [type]              [description]
+	 */
+	public function createUnLimitQRCode($org_id, $page_path, $args=[], $width=300, $force=false)
+	{
+		if (!$org_id || !$page_path) {
+			return $this->codeMsg(2000, '缺少必要参数');
+		}
+		// 组合sence参数
+		$args['org_id'] = $org_id;
+		$scene_str = http_build_query($args);
+
+		// 1. 文件路径及名称
+		$path = './uploads/qrcode/unlimit/'.$org_id;
+		$filename = 'qrcode-'.md5($page_path.'?'.$scene_str).'.png';
+		$filepath = $path.'/'.$filename;
+
+		# 创建目录
+		if (!file_exists($path) && !mkdir($path, 0777, true)) {
+			return $this->codeMsg(2001, '路径创建失败');
+		}
+
+		// 2. 不强制更新，文件存在直接返回
+		if (!$force && is_file($filepath)) {
+			return $this->codeMsg(300, ['path'=>$filepath]);
+		}
+		// echo $page_path;die;
+		// 3. 请求微信服务，生成小程序码
+		$app = app('wechat.mini_program');
+		$response = $app->app_code->getUnlimit(
+										$scene_str, 
+										['page'=>$page_path, 'width'=>$width]
+									);
+		# 3.1 生成失败，返回消息
+		if (!($response instanceof \EasyWeChat\Kernel\Http\StreamResponse)) {
+			return $this->codeMsg(2001, $response['errmsg']);
+		}
+
+		# 3.2 保存文件
+		$response->saveAs($path, $filename);
+		if (!is_file($filepath)) {
+			return $this->codeMsg(2002, '二维码保存本地失败');
+		}
+	    
+	    return $this->codeMsg(200, ['path'=>$filepath]);
+	}
+
+	
 }

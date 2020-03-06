@@ -11,6 +11,7 @@ class OrgInfoController extends Controller
 	protected $org;
 	public function __construct(OrgInfoRepository $org) 
 	{
+        $this->middleware('header.params');
 		$this->org = $org;
 	}
 	/** 
@@ -22,6 +23,7 @@ class OrgInfoController extends Controller
     public function index(Request $request)
     {
     	$data = $this->org->pageListOrg($request->all());
+        $data['params']=$request->all();
     	return $this->success($data);
     }
 

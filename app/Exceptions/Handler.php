@@ -64,8 +64,8 @@ class Handler extends ExceptionHandler
         }
         if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenBlacklisttedException) {
             return response()->json([
-                'status' => 401,
-                'code' => 401,
+                'status' => 50014,
+                'code' => 50014,
                 'message' => 'token登录失效',
                 'data' => $exception->errors(),
             ]);
@@ -73,8 +73,8 @@ class Handler extends ExceptionHandler
         // jwttoke你登录失效判断
         if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
             return response()->json([
-                'status' => 402,
-                'code' => 402,
+                'status' => 50014,
+                'code' => 50014,
                 'message' => 'token登录失效',
                 'data' => $exception->getMessage(),
             ]);
@@ -89,11 +89,20 @@ class Handler extends ExceptionHandler
             ]);
         }
 
-        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+        // if ($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+        //     return response()->json([
+        //         'status' => 404,
+        //         'code' => 404,
+        //         'message' => '页面不存在',
+        //         'data' => $exception->getMessage(),
+        //     ]);
+        // }
+
+        if ($exception instanceof \Tymon\JWTAuth\Exceptions\TokenBlacklistedException) {
             return response()->json([
-                'status' => 404,
-                'code' => 404,
-                'message' => '页面不存在',
+                'status' => 50014,
+                'code' => 50014,
+                'message' => 'token已失效',
                 'data' => $exception->getMessage(),
             ]);
         }
