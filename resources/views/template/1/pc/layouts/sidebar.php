@@ -27,7 +27,7 @@
                    class="right_1" rel="nofollow"><i>1</i><img src="./images/aa.gif" alt="在线咨询"/>&nbsp;&nbsp;&nbsp;点击咨询</a>
             </li> -->
             <li><a class="right_1 right_2"><img src="./images/wx.png" width="微信公众号"/>&nbsp;&nbsp;&nbsp;<img
-                            src="./images/ewmg.jpg" class="xfimg" alt="微信公众号" width="130"/></a></li>
+                            src="./images/ewmg.png" class="xfimg" alt="微信公众号" width="130"/></a></li>
             <li><a href="tel://18810276686" class="right_1 telphone" rel="nofollow"><img src="./images/xr3.png" alt="联系电话"/>&nbsp;&nbsp;&nbsp;188-1027-6686</a>
             </li>
             <li><a href="javascript:goTop();" class="right_1" rel="nofollow"><img src="./images/xr4.png" alt="返回页面顶部"/>&nbsp;&nbsp;&nbsp;返回顶部</a>
