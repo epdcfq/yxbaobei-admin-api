@@ -12,9 +12,8 @@
     <title>{{ $_globals['orgInfo']['short_name'] }}</title>
     <meta name="description" content="关于我们" />
     <meta name="keywords" content="网站建设,网页制作" />
-    <link rel="canonical" href="./about.html" />
+    <link rel="canonical" href="./about" />
     <link rel="alternate" type="application/rss+xml" title="RSS" href="./rss/" />
-    <link rel="Shortcut Icon" type="image/x-icon" href="./images/favicon.ico" />
     <link rel="dns-prefetch" href="./"/>
     <link rel="stylesheet" type="text/css" href="./css/animate.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
