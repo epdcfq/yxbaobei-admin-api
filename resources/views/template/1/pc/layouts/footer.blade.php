@@ -13,12 +13,12 @@
     </div>
 </div>
 <script>
-// 百度统计代码
 var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?b6db3e119e46f02ca246a5c20af51759";
+  hm.src = "https://hm.baidu.com/hm.js?0da8c2beeb6cf9f8bf7d560c2bbcab62";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+
