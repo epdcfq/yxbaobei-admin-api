@@ -17,9 +17,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix'=>'/web/{orgId}', 'namespace'=>'Web'],
 	function() {
 		Route::group(['namespace'=>'Pc', 'prefix'=>'pc'], function() {
-			Route::get('/index', 'HomeController@index')->name('pc_index');
+			// 首页
+			Route::get('/index.html', 'HomeController@index')->name('pc_index');
+			// 关于我们
 			Route::get('/about', 'HomeController@about')->name('pc_about');
+			// 文章
 			Route::get('/article', 'HomeController@article')->name('pc_article');
+			// 文章详情
 			Route::get('/article_show', 'HomeController@articleShow')->name('pc_article_show');
 
 		});

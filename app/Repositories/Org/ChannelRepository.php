@@ -127,8 +127,9 @@ class ChannelRepository
 			$plats = $info['plats'];
 			foreach ($plats as $k=>$plat) {
 				// 过滤不符合条件数据
-				if (!$this->hasRulePlat($plat, $args)) {
+				if (!$this->hasRulePlat($plat, $args) || $plat['status'] !== 1) {
 					unset($plats[$k]);
+					continue;
 				}
 				$info['show_plats'][] = $plat['plat'];
 			}
@@ -141,11 +142,20 @@ class ChannelRepository
 			// 平台转换为字符串
 			$info['show_plats'] = implode('/', $info['show_plats']);
 			// 操作权限
-			$info['permission'] = ['edit'];
+			$info['permission'] = ['edit', 'addLevel', 'addChild'];
+			if ($info['status']) {
+				$info['permission'][] = 'down';
+				$info['status_name'] = '上架';
+			} else {
+				$info['permission'][] = 'up';
+				$info['status_name'] = '下架';
+			}
 
 			$result[] = $info;
 		}
 
+		$result = \App\Repositories\Tools\TreeTool::build($result);
+		
 		return $result;
 	}
 
@@ -192,18 +202,60 @@ class ChannelRepository
 	}
 
 	/******************* [plats] 所属平台操作方法 ************************/
+	public function getChannelPlats($channel_id, $status='') {
+		$result = [];
+		if (!$channel_id) {
+			return $result;
+		}
+		// 根据栏目id查询平台信息
+		$query = $this->models['plats']->where('channel_id', $channel_id);
+		// 查询状态
+		if ($status !== '' && is_numeric($status)) {
+			$query->where('status', intval($status));
+		}
+		// 查询数据
+		$data = $query->get();
+		if (!$data) {
+			return $result;
+		}
+		// 转化数组
+		$result = $data->toArray();
+		return $result;
+	}
+	/** 
+	 * 根据栏目查询所属平台列表，并以平台id小标作为key返回
+	 * 
+	 * @param     [type]      $channel_id [description]
+	 * @param     string      $status     [description]
+	 * @return    [type]                  [description]
+	 */
+	public function getChannelPlatsKey($channel_id, $status='')
+	{
+		$result = [];
+		$data = $this->getChannelPlats($channel_id, $status);
+		if (!$data) {
+			return $result;
+		}
+		foreach ($data as $plat) {
+			$result[$plat['plat']] = $plat;
+		}
+		return $result;
+	}
 	/** 
 	 * [新增] 创建平台数据
 	 * 
 	 * @param     [type]      $data [description]
 	 * @return    [type]            [description]
 	 */
-	public function createPlats($channel_id, $data)
+	public function createPlat($channel_id, $data)
 	{
 		$result = [];
+		if (!isset($data['channel_id'])) {
+			$data['channel_id'] = $channel_id;
+		}
 		// 过滤无效字段
 		$data_field = $this->models['plats']->filter_field($data);
-		if (!$data_field) {
+		if (!$channel_id || !$data_field) {
 			return $result;
 		}
 
@@ -225,11 +277,14 @@ class ChannelRepository
 	 * @param     [type]      $data [description]
 	 * @return    [type]            [description]
 	 */
-	public function updatePlats($id, $data)
+	public function updatePlat($id, $data)
 	{
 		$result = [];
 		// 参数校验
-		$id = intval($id);
+		$id = $id;
+		if (isset($data['id'])) {
+			unset($data['id']);
+		}
 		// 过滤无效字段
 		$data_field = $this->models['plats']->filter_field($data);
 		if (!$id || !$data_field) {
@@ -241,7 +296,7 @@ class ChannelRepository
 		if (!$info) {
 			return $result;
 		}
-
+		// print_r($data_field);die;
 
 		// 将数据保存到数据库
 		$info->setRawAttributes($data_field);
@@ -253,11 +308,30 @@ class ChannelRepository
 		return $result;
 	}
 
+	/** 
+	 * [删除平台] 根据栏目id和平台id，删除平台信息(暂时不提供，为避免id缺失)
+	 * 
+	 * @param     [int]      $channel_id [栏目id]
+	 * @param     [int]      $plat_id    [平台id]
+	 * 
+	 * @return    [boolean]                  [删除状态]
+	 */
+	// private function deleteChannelPlat($channel_id, $plat_id)
+	// {
+	// 	if (!$channel_id || !$plat_id) {
+	// 		return false;
+	// 	}
+	// 	return $this->models['plats']->where('channel_id', $channel_id)->where('id', $plat_id)->delete();
+	// }
+
 	/******************* [channel + plats] 所属平台操作方法 ************************/
 	public function createChannelAndPlats($data)
 	{
 		$result = ['channel'=>false, 'plats'=>false];
-
+		// 门店id
+		if (isset($data['header.orgid']) && $data['header.orgid']) {
+			$data['org_id'] = $data['header.orgid'];
+		}
 		// 1. 新增商品主表数据
 		$result['channel'] = $this->createChannel($data);
 		// 插入失败或未传附属表数据，直接返回
@@ -265,49 +339,90 @@ class ChannelRepository
 			return $result;
 		}
 
-		// // 根据商品类型增加附属信息
-		// $type = $data['type'] ? $data['type'] : 'article';
-		// switch ($type) {
-		// 	case 'article':
-		// 		// 文章附加表
-		// 		$result['article'] = $this->createArticle($result['goods']['id'], $data['article']);
-		// 		break;
-		// 	case 'product':
-		// 		// 产品附加表
-		// 		$result['product'] = $this->createProduct($result['goods']['id'], $data['article']);
-		// 		break;
-			
-		// 	default:
-		// 		# code...
-		// 		break;
-		// }
+		// 创建所属平台
+		foreach ($data['plats'] as $plat) {
+			$plat['channel_id'] = $result['channel']['id'];
+			$result['plats'][] = $this->createPlat($result['channel']['id'], $plat);
+		}
 		
-
 		return $result;
 	}
 
 	public function updateChannelAndPlats($channel_id, $data)
 	{
 		$result = ['channel'=>false, 'channel'=>false];
-		if (!$data) {
+		if (!$data || !$channel_id) {
 			return false;
 		}
-
 		// 1. 更新栏目表
-		$result['channel'] = $this->updateChannel($goods_id, $data);
-		// [finish-1] 无更新文章详情，直接返回结果
-		if (!isset($data['channel']) && !$data['channel']) {
+		$result['channel'] = $this->updateChannel($channel_id, $data);
+		// [finish-1] 无更新平台信息，直接返回结果
+		if (!isset($data['plats']) || !$data['plats']) {
 			return $result;
 		}
 
-		// 2. 更新所属平台信息
-		$article_id = isset($data['channel']['id']) ? intval($data['channel']['id']) : 0;
-		if ($article_id>0) {
-			$result['article'] = $this->editArticle($article_id, $data['article']);
-		} else {
-			$result['article'] = $this->createArticle($goods_id, $data['article']);
+		// 2. 对更新平台信息进行分组（增、删、更新）
+		$plats = $this->getDiffPlats($channel_id, $data['plats']);
+		foreach ($plats as $type=>$data) {
+			// 无数据处理，走下次循环
+			if (!$data) {
+				continue;
+			}
+			foreach ($data as $key=>$value) {
+				// [路由] 根据不同数据类型进行操作
+				switch ($type) {
+					case 'create':
+						// 新增
+						$value['channel_id'] = $channel_id;
+						$result['plats']['create'][$value['plat']] = $this->createPlat($channel_id,$value);
+						break;
+					case 'update':
+						// 更新
+						$result['plats']['update'][$value['plat']] = $this->updatePlat($value['id'], $value);
+						break;
+				}
+			}
+			
 		}
 		
+		return $result;
+	}
+
+	public function getDiffPlats($channel_id, $plats) {
+		$result = ['create'=>[], 'update'=>[], 'delete'=>[]];
+		// 获取栏目平台列表(以平台plat字段为下标)
+		$channel_plats = $this->getChannelPlatsKey($channel_id);
+		// [方式一] 频道没有所属平台数据，直接返回新增
+		if (!$channel_plats) {
+			$result['create'] = $plats;
+			return $result;
+		}
+
+		// [方式二] 根据现有平台数据和要保存的平台数据做对比
+		// 当前plats变量平台id列表
+		$plat_tags = [];
+		// 判断新增、更新平台数据
+		foreach ($plats as $plat) {
+			// 平台变量
+			$tag = $plat['plat'];
+
+			// [新增] 关联平台信息
+			if (!array_key_exists($tag, $channel_plats)) {
+				$result['create'][$tag] = $plat;
+				continue;
+			}
+
+			// [更新] 关联平台
+			if (isset($plat['id'])) {
+				unset($plat['id']);
+			}
+			if (isset($plat['channel_id'])) {
+				unset($plat['channel_id']);
+			}
+
+			$result['update'][$tag] = array_merge($channel_plats[$tag], $plat);
+		}
+
 		return $result;
 	}
 }

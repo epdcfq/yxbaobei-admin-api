@@ -249,6 +249,7 @@ class GoodsRepository
 		$data['list'] = $this->goods->queryAll($sql, [], 'id DESC', $page, $per_page);
 		$total = $this->goods->queryOne(str_replace('*', 'COUNT(*) AS num', $sql))['num'];
 		$data['pagination'] = ['total'=>$total, 'page'=>$page, 'per_page'=>$per_page];
+		$data['where'] = $where;
 		return $data;
 	}
 
@@ -321,7 +322,7 @@ class GoodsRepository
 		if (isset($args['status']) && $args['status'] !== '' && $args['status']!==null) {
 			$where[] = ['status', $args['status']];
 		} else {
-			$where[] = ['status', 99];
+			$where[] = ['status', 1];
 		}
 		if (isset($args['dates']) && is_array($args['dates']) && $args['dates']) {
 			list($start_date, $end_date) = $args['dates'];

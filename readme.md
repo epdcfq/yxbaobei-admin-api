@@ -138,3 +138,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 	mysql > flush privileges;
 
 	mysql > exit;
+
+# Laravel部署
+	# 目录权限
+		sudo mkdir -p storage/app && sudo mkdir -p storage/framework && sudo mkdir -p storage/logs && sudo chmod -R 0777 storage/ && sudo chmod -R 0777 bootstrap/cache 

@@ -32,7 +32,25 @@ Route::group(['prefix'=>'auth', 'namespace'=>'UCenter'], function($router){
     Route::any('code2session', 'AuthController@code2session');
 });
 
-
+/**
+ * 服务接口路径
+ */
+Route::group(['prefix'=>'service/', 'namespace'=>'Service'], function(){
+	// 栏目管理
+	Route::group(['prefix'=>'channel', 'namespace'=>'Channel'], function(){
+		// 商品管理路由
+		Route::resource('/index', 'IndexController');
+		// 商品分类管理路由
+		Route::resource('/category', 'CategoryController');
+	});
+	// 商品管理
+	Route::group(['prefix'=>'goods', 'namespace'=>'Goods'], function(){
+		// 商品管理路由
+		Route::resource('/index', 'IndexController');
+		// 商品分类管理路由
+		Route::resource('/category', 'CategoryController');
+	});
+});
 
 Route::get('company/name', 'HomeController@company');
 
